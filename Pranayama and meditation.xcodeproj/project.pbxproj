@@ -12,6 +12,7 @@
 		2D0E83062BB6C39C0076B2CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0E83052BB6C39C0076B2CC /* Assets.xcassets */; };
 		2D0E83092BB6C39C0076B2CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0E83082BB6C39C0076B2CC /* Preview Assets.xcassets */; };
 		2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E83112BB6FDF00076B2CC /* TabModel.swift */; };
+		2D0E83142BB6FF440076B2CC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E83132BB6FF440076B2CC /* TabBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		2D0E83052BB6C39C0076B2CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D0E83082BB6C39C0076B2CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2D0E83112BB6FDF00076B2CC /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
+		2D0E83132BB6FF440076B2CC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				2D0E83012BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift */,
 				2D0E83032BB6C39A0076B2CC /* ContentView.swift */,
 				2D0E83112BB6FDF00076B2CC /* TabModel.swift */,
+				2D0E83132BB6FF440076B2CC /* TabBarView.swift */,
 				2D0E83052BB6C39C0076B2CC /* Assets.xcassets */,
 				2D0E83072BB6C39C0076B2CC /* Preview Content */,
 			);
@@ -142,6 +145,7 @@
 			files = (
 				2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */,
 				2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */,
+				2D0E83142BB6FF440076B2CC /* TabBarView.swift in Sources */,
 				2D0E83022BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
