@@ -21,11 +21,11 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
         case .home:
             return "house.fill"
         case .game:
-            return "gamecontroller.fill"
+            return "calendar.badge.clock"
         case .apps:
-            return "square.stack.3d.up.fill"
+            return "info.square"
         case .movie:
-            return "play.tv.fill"
+            return "gear"
         }
     }
     
@@ -34,11 +34,11 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
         case .home:
             return "Home"
         case .game:
-            return "Games"
+            return "Chart"
         case .apps:
-            return "Apps"
+            return "Info"
         case .movie:
-            return "Movies"
+            return "Settings"
         }
     }
     
@@ -47,11 +47,11 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
         case .home:
             return .indigo
         case .game:
-            return .pink
+            return .cyan
         case .apps:
-            return .orange
+            return .indigo
         case .movie:
-            return .teal
+            return .cyan
         }
     }
 }
