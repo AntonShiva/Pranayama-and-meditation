@@ -15,6 +15,8 @@ struct ContentView: View {
             backgroundColor
                 .ignoresSafeArea()
             VStack{
+                CarouselView()
+                    .padding(.top, 50)
                 Spacer()
                 TabBarView()
                
