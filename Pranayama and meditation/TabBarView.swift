@@ -15,11 +15,11 @@ struct TabBarView: View {
             backgroundView
             
             TabsLayoutView()
-                .frame(height: 83, alignment: .center)
+                .frame(height: 65, alignment: .center)
                 .clipped()
         }
-        .frame(height: 70, alignment: .center)
-        .padding(.horizontal, 5)
+        .frame(height: 66, alignment: .center)
+        .padding(.horizontal, 25)
     }
     
     @ViewBuilder private var backgroundView: some View {
@@ -43,7 +43,7 @@ fileprivate struct TabsLayoutView: View {
             
             ForEach(Tab.allCases) { tab in
                 TabButton(tab: tab, selectedTab: $selectedTab, namespace: namespace)
-                    .frame(width: 55, height: 55, alignment: .center)
+                    .frame(width: 55, height: 40, alignment: .center)
                 
                 Spacer(minLength: 0)
             }
@@ -77,7 +77,7 @@ fileprivate struct TabsLayoutView: View {
                     }
                     
                     Image(systemName: tab.icon)
-                        .font(.system(size: 35, weight: .semibold, design: .rounded))
+                        .font(.system(size: 28, weight: .semibold, design: .rounded))
                         .foregroundColor(isSelected ? tab.color : .gray)
                         .scaleEffect(isSelected ? 1 : 0.9)
                         .animation(isSelected ? .spring(response: 0.5, dampingFraction: 0.3, blendDuration: 1) : .spring(), value: selectedTab)
