@@ -13,8 +13,7 @@
 		2D0E83092BB6C39C0076B2CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0E83082BB6C39C0076B2CC /* Preview Assets.xcassets */; };
 		2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E83112BB6FDF00076B2CC /* TabModel.swift */; };
 		2D0E83142BB6FF440076B2CC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E83132BB6FF440076B2CC /* TabBarView.swift */; };
-		2D81CBD22BBC68FD00471763 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBD12BBC68FD00471763 /* CarouselView.swift */; };
-		2D81CBD42BBC6A7A00471763 /* CarouselViewChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBD32BBC6A7A00471763 /* CarouselViewChild.swift */; };
+		2D81CBD62BBF180400471763 /* SnapCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBD52BBF180400471763 /* SnapCarousel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +24,7 @@
 		2D0E83082BB6C39C0076B2CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2D0E83112BB6FDF00076B2CC /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
 		2D0E83132BB6FF440076B2CC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		2D81CBD12BBC68FD00471763 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
-		2D81CBD32BBC6A7A00471763 /* CarouselViewChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewChild.swift; sourceTree = "<group>"; };
+		2D81CBD52BBF180400471763 /* SnapCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapCarousel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +41,7 @@
 		2D0E82F52BB6C39A0076B2CC = {
 			isa = PBXGroup;
 			children = (
+				2D81CBD52BBF180400471763 /* SnapCarousel.swift */,
 				2D0E83002BB6C39A0076B2CC /* Pranayama and meditation */,
 				2D0E82FF2BB6C39A0076B2CC /* Products */,
 			);
@@ -65,8 +64,6 @@
 				2D0E83132BB6FF440076B2CC /* TabBarView.swift */,
 				2D0E83052BB6C39C0076B2CC /* Assets.xcassets */,
 				2D0E83072BB6C39C0076B2CC /* Preview Content */,
-				2D81CBD12BBC68FD00471763 /* CarouselView.swift */,
-				2D81CBD32BBC6A7A00471763 /* CarouselViewChild.swift */,
 			);
 			path = "Pranayama and meditation";
 			sourceTree = "<group>";
@@ -149,12 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D81CBD22BBC68FD00471763 /* CarouselView.swift in Sources */,
+				2D81CBD62BBF180400471763 /* SnapCarousel.swift in Sources */,
 				2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */,
 				2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */,
 				2D0E83142BB6FF440076B2CC /* TabBarView.swift in Sources */,
 				2D0E83022BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift in Sources */,
-				2D81CBD42BBC6A7A00471763 /* CarouselViewChild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

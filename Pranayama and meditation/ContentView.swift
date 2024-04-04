@@ -11,18 +11,7 @@ let backgroundColor = Color.init(white: 0.92)
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            backgroundColor
-                .ignoresSafeArea()
-            VStack{
-                CarouselView()
-                    .padding(.top, 50)
-                Spacer()
-                TabBarView()
-               
-            }
-            .padding(.horizontal)
-        }
+       Text("e")
     }
 }
 
