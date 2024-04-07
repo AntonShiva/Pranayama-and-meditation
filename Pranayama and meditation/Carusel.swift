@@ -14,7 +14,6 @@ struct Carusel: View {
     @State private var draggingItem = 0.0
     @State var activeIndex: Int = 0
     
-   
     
     var body: some View {
         

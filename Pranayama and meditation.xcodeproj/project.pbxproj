@@ -17,6 +17,8 @@
 		2D81CBD82BC0364F00471763 /* Carusel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBD72BC0364F00471763 /* Carusel.swift */; };
 		2D81CBDE2BC1D1E500471763 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBDD2BC1D1E500471763 /* Item.swift */; };
 		2D81CBE02BC1D22600471763 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBDF2BC1D22500471763 /* Store.swift */; };
+		2D81CBE82BC2A05000471763 /* SwiftUIWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBE72BC2A05000471763 /* SwiftUIWheelPicker.swift */; };
+		2D81CBEA2BC2ADB300471763 /* BreathingCycleSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBE92BC2ADB300471763 /* BreathingCycleSettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		2D81CBD72BC0364F00471763 /* Carusel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carusel.swift; sourceTree = "<group>"; };
 		2D81CBDD2BC1D1E500471763 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2D81CBDF2BC1D22500471763 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		2D81CBE72BC2A05000471763 /* SwiftUIWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWheelPicker.swift; sourceTree = "<group>"; };
+		2D81CBE92BC2ADB300471763 /* BreathingCycleSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingCycleSettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,12 +71,14 @@
 				2D0E83012BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift */,
 				2D81CBD72BC0364F00471763 /* Carusel.swift */,
 				2D81CBDD2BC1D1E500471763 /* Item.swift */,
+				2D81CBDF2BC1D22500471763 /* Store.swift */,
 				2D0E83032BB6C39A0076B2CC /* ContentView.swift */,
 				2D0E83112BB6FDF00076B2CC /* TabModel.swift */,
 				2D0E83132BB6FF440076B2CC /* TabBarView.swift */,
 				2D0E83052BB6C39C0076B2CC /* Assets.xcassets */,
 				2D0E83072BB6C39C0076B2CC /* Preview Content */,
-				2D81CBDF2BC1D22500471763 /* Store.swift */,
+				2D81CBE72BC2A05000471763 /* SwiftUIWheelPicker.swift */,
+				2D81CBE92BC2ADB300471763 /* BreathingCycleSettingView.swift */,
 			);
 			path = "Pranayama and meditation";
 			sourceTree = "<group>";
@@ -158,11 +164,13 @@
 				2D81CBD62BBF180400471763 /* SnapCarousel.swift in Sources */,
 				2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */,
 				2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */,
+				2D81CBEA2BC2ADB300471763 /* BreathingCycleSettingView.swift in Sources */,
 				2D81CBE02BC1D22600471763 /* Store.swift in Sources */,
 				2D81CBD82BC0364F00471763 /* Carusel.swift in Sources */,
 				2D81CBDE2BC1D1E500471763 /* Item.swift in Sources */,
 				2D0E83142BB6FF440076B2CC /* TabBarView.swift in Sources */,
 				2D0E83022BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift in Sources */,
+				2D81CBE82BC2A05000471763 /* SwiftUIWheelPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
