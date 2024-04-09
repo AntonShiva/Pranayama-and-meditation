@@ -10,7 +10,6 @@ import SwiftUI
 let backgroundColor = Color.init(white: 0.92)
 
 struct ContentView: View {
-   @State private var isShowing = false
     var body: some View {
         ZStack {
             backgroundColor
@@ -18,17 +17,9 @@ struct ContentView: View {
             VStack() {
                 Carusel()
                     .padding(50)
-                    .onTapGesture {
-                        isShowing = true
-                    }
-                    .sheet(isPresented: $isShowing) {
-                        VStack {
-                            BreathingCycleSettingView()
-                        }
-                        
-                        .presentationDetents([.medium])
-                    }
+                 
                 Spacer()
+                
                 TabBarView()
              
             }

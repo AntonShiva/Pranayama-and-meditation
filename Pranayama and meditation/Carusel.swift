@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Carusel: View {
-    
+    @State private var isShowing = false
     @StateObject var store = Store()
     @State private var snappedItem = 0.0
     @State private var draggingItem = 0.0
@@ -27,7 +27,7 @@ struct Carusel: View {
                    Image(item.title)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .cornerRadius(20)
+                        .cornerRadius(18)
                 }
                 .frame(width: 250, height: 350)
                 
@@ -36,6 +36,16 @@ struct Carusel: View {
                 .offset(x: myXOffset(item.id), y: 0)
                 .zIndex(1.0 - abs(distance(item.id)) * 0.1)
             }
+        }
+        .onTapGesture {
+            isShowing = true
+        }
+        .sheet(isPresented: $isShowing) {
+            VStack {
+                BreathingCycleSettingView()
+            }
+            
+            .presentationDetents([.medium])
         }
         .gesture(
             DragGesture()
