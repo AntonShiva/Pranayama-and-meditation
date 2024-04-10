@@ -14,7 +14,7 @@ class Store: ObservableObject {
     // dummy data
     init() {
         items = []
-        for i in 1...4 {
+        for i in 0...3 {
             let new = Item(id: i, title: "\(i)")
             items.append(new)
         }

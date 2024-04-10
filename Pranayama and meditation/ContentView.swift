@@ -16,7 +16,11 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack() {
                 Carusel()
-                    .padding(50)
+                    .padding(.top, 50)
+                
+//                TabloPusk()
+//                    .padding(.top, 80.0)
+//                   
                  
                 Spacer()
                 

@@ -20,7 +20,7 @@
 		2D81CBE82BC2A05000471763 /* SwiftUIWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBE72BC2A05000471763 /* SwiftUIWheelPicker.swift */; };
 		2D81CBEA2BC2ADB300471763 /* BreathingCycleSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBE92BC2ADB300471763 /* BreathingCycleSettingView.swift */; };
 		2D81CBEC2BC582BE00471763 /* TabloPusk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBEB2BC582BE00471763 /* TabloPusk.swift */; };
-		2D81CBEE2BC5848500471763 /* TabloButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBED2BC5848500471763 /* TabloButton.swift */; };
+		2D81CBF02BC6D53400471763 /* WheelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBEF2BC6D53400471763 /* WheelPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,7 @@
 		2D81CBE72BC2A05000471763 /* SwiftUIWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWheelPicker.swift; sourceTree = "<group>"; };
 		2D81CBE92BC2ADB300471763 /* BreathingCycleSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingCycleSettingView.swift; sourceTree = "<group>"; };
 		2D81CBEB2BC582BE00471763 /* TabloPusk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabloPusk.swift; sourceTree = "<group>"; };
-		2D81CBED2BC5848500471763 /* TabloButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabloButton.swift; sourceTree = "<group>"; };
+		2D81CBEF2BC6D53400471763 /* WheelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 				2D81CBE72BC2A05000471763 /* SwiftUIWheelPicker.swift */,
 				2D81CBE92BC2ADB300471763 /* BreathingCycleSettingView.swift */,
 				2D81CBEB2BC582BE00471763 /* TabloPusk.swift */,
-				2D81CBED2BC5848500471763 /* TabloButton.swift */,
+				2D81CBEF2BC6D53400471763 /* WheelPickerView.swift */,
 			);
 			path = "Pranayama and meditation";
 			sourceTree = "<group>";
@@ -169,6 +169,7 @@
 			files = (
 				2D81CBD62BBF180400471763 /* SnapCarousel.swift in Sources */,
 				2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */,
+				2D81CBF02BC6D53400471763 /* WheelPickerView.swift in Sources */,
 				2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */,
 				2D81CBEA2BC2ADB300471763 /* BreathingCycleSettingView.swift in Sources */,
 				2D81CBE02BC1D22600471763 /* Store.swift in Sources */,
@@ -177,7 +178,6 @@
 				2D0E83142BB6FF440076B2CC /* TabBarView.swift in Sources */,
 				2D81CBEC2BC582BE00471763 /* TabloPusk.swift in Sources */,
 				2D0E83022BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift in Sources */,
-				2D81CBEE2BC5848500471763 /* TabloButton.swift in Sources */,
 				2D81CBE82BC2A05000471763 /* SwiftUIWheelPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
