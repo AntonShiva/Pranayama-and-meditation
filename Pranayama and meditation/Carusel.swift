@@ -14,6 +14,9 @@ struct Carusel: View {
     @State private var draggingItem = 0.0
     @State var activeIndex: Int = 0
     
+    @AppStorage("selectedValues")  var selectedValues  = [5, 0, 5, 0]
+
+
     
     var body: some View {
         VStack {
@@ -46,10 +49,10 @@ struct Carusel: View {
             }
             .sheet(isPresented: $isShowing) {
                 VStack {
-                    BreathingCycleSettingView()
+                    BreathingCycleSettingView(isShowing: $isShowing)
                 }
                 
-                .presentationDetents([.medium])
+                .presentationDetents([.large])
             }
             .gesture(
                 DragGesture()
@@ -75,7 +78,7 @@ struct Carusel: View {
                 .padding(.top, 25.0)
             
             if activeIndex == 0 {
-                TabloPusk(isShowing: $isShowing)
+                TabloPusk(isShowing: $isShowing, selectedValues: $selectedValues)
                     .padding(.top, 50.0)
             }
         }

@@ -10,6 +10,8 @@ import SwiftUI
 struct TabloPusk: View {
     @Binding var isShowing: Bool
     
+    @Binding var selectedValues: [Int]
+    
     var body: some View {
         HStack(spacing: 10) {
             VStack {
@@ -22,7 +24,7 @@ struct TabloPusk: View {
                         Circle()
                             .stroke(style: .init(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
                             .frame(width: 60, height: 60)
-                        Text("5")
+                        Text("\(self.selectedValues[0]) ")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
                     }
@@ -35,6 +37,7 @@ struct TabloPusk: View {
             
             VStack {
                 Button(action: {
+                    isShowing = true
                 }, label: {
                     ZStack {
     //                    Circle()
@@ -42,7 +45,7 @@ struct TabloPusk: View {
                         Circle()
                             .stroke(style: .init(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
                             .frame(width: 60, height: 60)
-                        Text("2")
+                        Text("\(self.selectedValues[1]) ")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
                     }
@@ -59,6 +62,7 @@ struct TabloPusk: View {
             
             VStack {
                 Button(action: {
+                    isShowing = true
                 }, label: {
                     ZStack {
     //                    Circle()
@@ -66,7 +70,7 @@ struct TabloPusk: View {
                         Circle()
                             .stroke(style: .init(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
                             .frame(width: 60, height: 60)
-                        Text("5")
+                        Text("\(self.selectedValues[2]) ")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
                     }
@@ -79,6 +83,7 @@ struct TabloPusk: View {
             
             VStack {
                 Button(action: {
+                    isShowing = true
                 }, label: {
                     ZStack {
     //                    Circle()
@@ -86,7 +91,7 @@ struct TabloPusk: View {
                         Circle()
                             .stroke(style: .init(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
                             .frame(width: 60, height: 60)
-                        Text("3")
+                        Text("\(self.selectedValues[3]) ")
                             .foregroundColor(.gray)
                             .font(.system(size: 30))
                     }
