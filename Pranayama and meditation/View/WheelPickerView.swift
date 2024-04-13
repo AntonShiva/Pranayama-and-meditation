@@ -16,6 +16,7 @@ struct WheelPickerView: View {
     var body: some View {
         VStack {
             Text(text)
+                .foregroundStyle(.cyan)
                 .font(.system(size: 18))
             
             SwiftUIWheelPicker($selectedIndex, items: values) { value in
@@ -23,6 +24,8 @@ struct WheelPickerView: View {
                     Text("\(value)")
                         .font(.system(size: 20))
                         .frame(width: reader.size.width, height: reader.size.height, alignment: .center)
+                        .foregroundStyle(.cyan)
+                        
                 }
             }
             .onValueChanged { newValue in

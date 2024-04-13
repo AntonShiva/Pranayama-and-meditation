@@ -17,10 +17,7 @@ struct ContentView: View {
             VStack() {
                 Carusel()
                     .padding(.top, 50)
-                
-//                TabloPusk()
-//                    .padding(.top, 80.0)
-//                   
+                 
                  
                 Spacer()
                 

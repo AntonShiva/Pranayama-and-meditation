@@ -10,5 +10,5 @@ import SwiftUI
 struct Item: Identifiable {
     var id: Int
     var title: String
-    
+    var opisanie: String
 }

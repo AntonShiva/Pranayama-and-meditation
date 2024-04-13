@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Carusel: View {
     @State private var isShowing = false
+    
     @StateObject var store = Store()
     @State private var snappedItem = 0.0
     @State private var draggingItem = 0.0
@@ -31,6 +32,7 @@ struct Carusel: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .cornerRadius(18)
+                        
                     }
                     .frame(width: 250, height: 350)
                     
@@ -38,7 +40,6 @@ struct Carusel: View {
                     .opacity(1.0 - abs(distance(item.id)) * 0.3 )
                     .offset(x: myXOffset(item.id), y: 0)
                     .zIndex(1.0 - abs(distance(item.id)) * 0.1)
-                    
                     
                     
                 }
@@ -49,7 +50,21 @@ struct Carusel: View {
             }
             .sheet(isPresented: $isShowing) {
                 VStack {
-                    BreathingCycleSettingView(isShowing: $isShowing)
+                    
+                  
+                    
+                    Text("\(store.items[0].opisanie)")
+                        .padding(.top, 40.0)
+                        .foregroundStyle(.cyan)
+                        .font(.system(size: 25))
+                    
+                   
+                    
+                    BreathingCycleSettingView(isShowing: $isShowing, selectedValues: $selectedValues)
+                        .padding(.top, 40.0)
+                    
+                    Spacer()
+                    
                 }
                 
                 .presentationDetents([.large])
@@ -74,12 +89,72 @@ struct Carusel: View {
                     }
             )
             
+            
+            
             CustomIndicator()
-                .padding(.top, 25.0)
+                .padding(.top, 15.0)
             
             if activeIndex == 0 {
-                TabloPusk(isShowing: $isShowing, selectedValues: $selectedValues)
-                    .padding(.top, 50.0)
+                VStack{
+                   
+                
+                    Text("\(store.items[0].opisanie)")
+                        .foregroundStyle(.cyan)
+                        .font(.system(size: 25))
+                    
+                    Spacer()
+                    
+                    TabloPusk(isShowing: $isShowing, selectedValues: $selectedValues)
+                        .padding(.top, 15.0)
+                    
+                
+                    Spacer()
+                
+                
+                HStack{
+                    Spacer()
+                    Button {
+                         withAnimation {
+                             isShowing = true
+                         }
+                    } label: {
+                        Text("Настроить")
+                            .foregroundStyle(.cyan)
+                            .font(.system(size: 17))
+                    }
+                    .frame(width: 120.0, height: 40)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.cyan, lineWidth: 2)
+                    )
+                    
+                    Spacer()
+                    
+                    Button {
+                        withAnimation {
+                            isShowing = true
+                        }
+                    } label: {
+                        Text("Старт")
+                            .foregroundStyle(.cyan)
+                            .font(.system(size: 17))
+                    }
+                    .frame(width: 120.0, height: 40)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.cyan, lineWidth: 2)
+                    )
+                    
+                    Spacer()
+                    
+                }
+                .padding(.vertical, 15.0)
+                    
+                    Spacer()
+
+                }
+                .padding(.top, 5.0)
+                    
             }
         }
     }
@@ -88,14 +163,15 @@ struct Carusel: View {
     func CustomIndicator()->some View {
         HStack(spacing: 5) {
             ForEach(store.items.reversed()) { item in
-                
-                Circle()
-                    .fill(activeIndex == Int(item.id) ? .cyan : .gray.opacity(0.5))
-                
-                    .frame(width: activeIndex == Int(item.id) ? 10 : 6, height: activeIndex == Int(item.id) ? 10 : 6)
-                
+                VStack{
+                                   
+                    Circle()
+                        .fill(activeIndex == Int(item.id) ? .cyan : .gray.opacity(0.5))
+                    
+                        .frame(width: activeIndex == Int(item.id) ? 10 : 6, height: activeIndex == Int(item.id) ? 10 : 6)
+                    
+                }
             }
-          
         }
         .animation(.easeInOut, value: activeIndex)
       
@@ -112,7 +188,7 @@ struct Carusel: View {
 }
 
 #Preview {
-    Carusel()
+    ContentView()
 }
 
 

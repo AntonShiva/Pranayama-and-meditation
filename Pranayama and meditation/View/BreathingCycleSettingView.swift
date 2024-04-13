@@ -17,7 +17,7 @@ struct BreathingCycleSettingView: View {
     @Binding var isShowing: Bool
     
     @AppStorage("indexBasics")  var indexBasics  = [4, 0, 4, 0]
-    @AppStorage("selectedValues")  var selectedValues  = [5, 0, 5, 0]
+    @Binding var selectedValues: [Int]
     
 //    @Binding var dailyRate: [Int]
     
@@ -36,7 +36,7 @@ struct BreathingCycleSettingView: View {
                     .foregroundStyle(.cyan)
                     .font(.system(size: 17))
             }
-            .frame(width: 100.0, height: 35)
+            .frame(width: 120.0, height: 40)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.cyan, lineWidth: 2)
@@ -50,21 +50,3 @@ struct BreathingCycleSettingView: View {
     Carusel()
 }
 
-extension Array: RawRepresentable where Element: Codable {
-    public init?(rawValue: String) {
-        guard let data = rawValue.data(using: .utf8),
-              let result = try? JSONDecoder().decode([Element].self, from: data)
-        else {
-            return nil
-        }
-        self = result
-    }
-    public var rawValue: String {
-        guard let data = try? JSONEncoder().encode(self),
-              let result = String(data: data, encoding: .utf8)
-        else {
-            return "[]"
-        }
-        return result
-    }
-}
