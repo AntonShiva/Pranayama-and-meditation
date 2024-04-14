@@ -113,7 +113,7 @@ struct BreatheView: View {
                     .fill(currentType.color.gradient.opacity(0.5))
                     .frame(width: 150, height: 150)
                 // 150 /2 -> 75
-                    .offset(x: startAnimation ? 75 : 0)
+                    .offset(x: startAnimation ? 65 : 35)
                     .rotationEffect(.init(degrees: Double(index) * 45 ))
                     .rotationEffect(.init(degrees: startAnimation ? -45 : 0))
                 
@@ -174,6 +174,7 @@ struct BreatheView: View {
     
     // MARK: Breathing Action
     func startBreathing(){
+        breatheAction = "Вдох"
         withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.7, blendDuration: 0.7)){
             showBreatheView.toggle()
         }
@@ -186,7 +187,7 @@ struct BreatheView: View {
             }
         }else{
             withAnimation(.easeInOut(duration: 1.5)){
-                startAnimation = true
+                startAnimation = false
             }
         }
     }

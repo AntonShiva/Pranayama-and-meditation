@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Carusel: View {
     @State private var isShowing = false
+    @State private var isShowingBreath = false
     
     @StateObject var store = Store()
     @State private var snappedItem = 0.0
@@ -64,6 +65,14 @@ struct Carusel: View {
                         .padding(.top, 40.0)
                     
                     Spacer()
+                    
+                }
+                
+                .presentationDetents([.large])
+            }
+            .sheet(isPresented: $isShowingBreath) {
+                VStack {
+          BreatheView()
                     
                 }
                 
@@ -132,7 +141,7 @@ struct Carusel: View {
                     
                     Button {
                         withAnimation {
-                            isShowing = true
+                            isShowingBreath = true
                         }
                     } label: {
                         Text("Старт")
