@@ -15,6 +15,10 @@
 		2D0E83142BB6FF440076B2CC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E83132BB6FF440076B2CC /* TabBarView.swift */; };
 		2D76C9672BCA729F00B51962 /* BreatheType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76C9662BCA729F00B51962 /* BreatheType.swift */; };
 		2D76C9692BCA7EBB00B51962 /* BreatheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76C9682BCA7EBB00B51962 /* BreatheView.swift */; };
+		2D76C9772BCE49AF00B51962 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76C9762BCE49AF00B51962 /* Indicator.swift */; };
+		2D76C9792BCE4A8B00B51962 /* BreathCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76C9782BCE4A8B00B51962 /* BreathCounterView.swift */; };
+		2D76C97B2BCE51B700B51962 /* ProgressBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76C97A2BCE51B700B51962 /* ProgressBarButtonView.swift */; };
+		2D76C9832BD2A69000B51962 /* BreathAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76C9822BD2A69000B51962 /* BreathAnimation.swift */; };
 		2D81CBD82BC0364F00471763 /* Carusel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBD72BC0364F00471763 /* Carusel.swift */; };
 		2D81CBDE2BC1D1E500471763 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBDD2BC1D1E500471763 /* Item.swift */; };
 		2D81CBE02BC1D22600471763 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBDF2BC1D22500471763 /* Store.swift */; };
@@ -36,6 +40,10 @@
 		2D0E83132BB6FF440076B2CC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		2D76C9662BCA729F00B51962 /* BreatheType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheType.swift; sourceTree = "<group>"; };
 		2D76C9682BCA7EBB00B51962 /* BreatheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheView.swift; sourceTree = "<group>"; };
+		2D76C9762BCE49AF00B51962 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		2D76C9782BCE4A8B00B51962 /* BreathCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathCounterView.swift; sourceTree = "<group>"; };
+		2D76C97A2BCE51B700B51962 /* ProgressBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarButtonView.swift; sourceTree = "<group>"; };
+		2D76C9822BD2A69000B51962 /* BreathAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathAnimation.swift; sourceTree = "<group>"; };
 		2D81CBD72BC0364F00471763 /* Carusel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carusel.swift; sourceTree = "<group>"; };
 		2D81CBDD2BC1D1E500471763 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2D81CBDF2BC1D22500471763 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -88,6 +96,9 @@
 				2D76C9682BCA7EBB00B51962 /* BreatheView.swift */,
 				2D0E83052BB6C39C0076B2CC /* Assets.xcassets */,
 				2D0E83072BB6C39C0076B2CC /* Preview Content */,
+				2D76C9762BCE49AF00B51962 /* Indicator.swift */,
+				2D76C9782BCE4A8B00B51962 /* BreathCounterView.swift */,
+				2D76C9822BD2A69000B51962 /* BreathAnimation.swift */,
 			);
 			path = "Pranayama and meditation";
 			sourceTree = "<group>";
@@ -134,6 +145,7 @@
 				2D81CBEF2BC6D53400471763 /* WheelPickerView.swift */,
 				2D81CBEB2BC582BE00471763 /* TabloPusk.swift */,
 				2D81CBF72BC8FC8500471763 /* IndicatorButtonView.swift */,
+				2D76C97A2BCE51B700B51962 /* ProgressBarButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -209,18 +221,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D81CBFA2BC979F300471763 /* Extension.swift in Sources */,
+				2D76C9792BCE4A8B00B51962 /* BreathCounterView.swift in Sources */,
 				2D76C9672BCA729F00B51962 /* BreatheType.swift in Sources */,
 				2D76C9692BCA7EBB00B51962 /* BreatheView.swift in Sources */,
 				2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */,
 				2D81CBF02BC6D53400471763 /* WheelPickerView.swift in Sources */,
 				2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */,
 				2D81CBEA2BC2ADB300471763 /* BreathingCycleSettingView.swift in Sources */,
+				2D76C9772BCE49AF00B51962 /* Indicator.swift in Sources */,
 				2D81CBE02BC1D22600471763 /* Store.swift in Sources */,
 				2D81CBF82BC8FC8500471763 /* IndicatorButtonView.swift in Sources */,
 				2D81CBD82BC0364F00471763 /* Carusel.swift in Sources */,
 				2D81CBDE2BC1D1E500471763 /* Item.swift in Sources */,
 				2D0E83142BB6FF440076B2CC /* TabBarView.swift in Sources */,
 				2D81CBEC2BC582BE00471763 /* TabloPusk.swift in Sources */,
+				2D76C9832BD2A69000B51962 /* BreathAnimation.swift in Sources */,
+				2D76C97B2BCE51B700B51962 /* ProgressBarButtonView.swift in Sources */,
 				2D0E83022BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift in Sources */,
 				2D81CBE82BC2A05000471763 /* SwiftUIWheelPicker.swift in Sources */,
 			);

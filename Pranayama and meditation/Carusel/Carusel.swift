@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Carusel: View {
-    @State private var isShowing = false
+   
     @State private var isShowingBreath = false
     
     @StateObject var store = Store()
@@ -17,7 +17,7 @@ struct Carusel: View {
     @State var activeIndex: Int = 0
     
     @AppStorage("selectedValues")  var selectedValues  = [5, 0, 5, 0]
-
+    @AppStorage("isShowing") var isShowing = false
 
     
     var body: some View {
@@ -78,6 +78,11 @@ struct Carusel: View {
                 
                 .presentationDetents([.large])
             }
+            
+//            .fullScreenCover(isPresented: $isShowingBreath) {
+//                BreatheView()
+//            }
+            
             .gesture(
                 DragGesture()
                     .onChanged { value in

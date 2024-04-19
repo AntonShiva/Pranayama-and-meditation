@@ -18,28 +18,52 @@ struct BreatheView: View {
     @State var timerCount: CGFloat = 0
     @State var breatheAction: String = ("Вдох")
     @State var count: Int = 0
+   @AppStorage("isShowing") var isShowing = false
+
+    // Массив выбранных значений
+    @AppStorage("selectedValues")  var selectedValues  = [5, 0, 5, 0]
+    
+    // Индекс текущего элемента массива
+    @State var currentIndex = 0
+    
+    // Статус паузы/возобновления
+    @State var pauseResumeBtn = "Start"
+    
+    // Оставшееся время для текущего элемента массива
+    @State var timeRemaining: Int = 1
+    
+    // Таймер
+    @State var timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+    
+    // Флаг для отслеживания запуска таймера
+    @State var isTimerRunning = false
+     
     var body: some View {
         ZStack{
             Background()
             
             Content()
             
+           
+            
             Text(breatheAction)
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .frame(maxHeight: .infinity,alignment: .top)
-                .padding(.top,50)
+                .padding(.top,80.0)
                 .opacity(showBreatheView ? 1 : 0)
                 
                 .animation(.easeInOut(duration: 1), value: showBreatheView)
                 .animation(.easeInOut(duration: 1), value: breatheAction)
         }
+        .background(.gray)
         // MARK: Timer
         .onReceive(Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()) { _ in
             if showBreatheView{
                 // MARK: Extra Time For 0.1 Delay
-                if timerCount > 3.2{
+                if timerCount > 6{
                     timerCount = 0
+                    
                     breatheAction = (breatheAction == ( "Вдох") ? ("Выдох") : ("Вдох"))
                     withAnimation(.easeInOut(duration: 3).delay(0.1)){
                         startAnimation.toggle()
@@ -50,7 +74,7 @@ struct BreatheView: View {
                     timerCount += 0.01
                 }
                 
-                count = 3 - Int(timerCount)
+                count = 6 - Int(timerCount)
             }else{
                 // MARK: Resetting
                 timerCount = 0
@@ -93,6 +117,7 @@ struct BreatheView: View {
                                 }
                             }
                     }
+                    .frame(width: 250)
                     .padding()
                 }
                 .frame(width: size.width, height: size.height, alignment: .bottom)
@@ -108,28 +133,36 @@ struct BreatheView: View {
         // It's Your Wish
         // 360/8 = 45deg For Each Circle
         ZStack{
+            
             ForEach(1...8,id: \.self){index in
                 Circle()
                     .fill(currentType.color.gradient.opacity(0.5))
                     .frame(width: 150, height: 150)
                 // 150 /2 -> 75
-                    .offset(x: startAnimation ? 65 : 35)
+                    .offset(x: startAnimation ? 65 : 45)
                     .rotationEffect(.init(degrees: Double(index) * 45 ))
                     .rotationEffect(.init(degrees: startAnimation ? -45 : 0))
                 
                 
             }
         }
+        
         .scaleEffect(startAnimation ? 1 : 0.7)
         .overlay(content: {
-            Text("\(count == 0 ? 1 : count)")
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .animation(.easeInOut, value: count)
-                .opacity(showBreatheView ? 1 : 0)
+            ProgressBarButtonView(value: "\(count == 0 ? 1 : count)")
+            
+//            Text("\(breatheAction)")
+//                .font(.title)
+//                .scaleEffect(startAnimation ? 1 : 0.8)
+//                .fontWeight(.bold)
+//                .foregroundColor(.white)
+//                
+//                .animation(.easeInOut(duration: 1), value: showBreatheView)
+//                .animation(.easeInOut(duration: 1), value: breatheAction)
+//                .opacity(showBreatheView ? 1 : 0)
         })
-        .frame(height: (size.width + 190))
+        .frame(height: (size.width + 110))
+        
     }
     
     // MARK: Background Image With Gradient Overlays
@@ -140,32 +173,39 @@ struct BreatheView: View {
             Image("BG")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .offset(x: -40 ,y: 0)
+                .offset(x: 0 ,y: 0)
                 .frame(width: size.width, height: size.height)
                 .clipped()
+                .opacity(0.2)
             // MARK: Blurrubg White Breathing
                 .blur(radius: startAnimation ? 4 : 0, opaque: true)
                 .overlay {
                     ZStack{
                         Rectangle()
                             .fill(.linearGradient(colors: [
-                                currentType.color.opacity(0.9),
+                                currentType.color.opacity(0.7),
                                 .clear,
-                                .clear
+                                .clear,
+                               .clear
                             ], startPoint: .top, endPoint: .bottom))
-                            .frame(height: size.height / 1.5)
+                            .frame(height: size.height / 1.1)
                             .frame(maxHeight: .infinity,alignment: .top)
-                        Rectangle()
-                            .fill(.linearGradient(colors: [
-                                .clear,
-                                .black,
-                                .black,
-                                .black,
-                                .black
-                            ], startPoint: .top, endPoint: .bottom))
-                            .frame(height: size.height / 1.5)
-                            .frame(maxHeight: .infinity,alignment: .bottom)
-                            .opacity(0.6)
+                       
+                            Rectangle()
+                                .fill(.linearGradient(colors: [
+                                    .clear,
+                                    .black,
+                                    .black,
+                                    .black,
+                                    .black,
+                                    .black,
+                                    .black,
+                                    .black
+                                ], startPoint: .top, endPoint: .bottom))
+                                .frame(height: size.height / 1.3)
+                                .frame(maxHeight: .infinity,alignment: .bottom)
+                                .opacity(startAnimation ? 0.4 : 0.3)
+                     
                     }
                 }
         }
