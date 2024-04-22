@@ -7,100 +7,62 @@
 import Foundation
 import SwiftUI
 
-// Расширение для инициализации цвета на основе шестнадцатеричного значения
-extension Color {
-    init(hex: UInt, alpha: Double = 1) {
-        self.init(
-            .sRGB,
-            red: Double((hex >> 16) & 0xff) / 255,
-            green: Double((hex >> 08) & 0xff) / 255,
-            blue: Double((hex >> 00) & 0xff) / 255,
-            opacity: alpha
-        )
-    }
-}
 
-// Структура для хранения глобальных переменных и функций
-struct GlobalSettings {
-    // Функция для создания цвета на основе RGB значений
-    static func createColors(_ red: Double, _ green: Double, _ blue: Double) -> Color {
-        Color(red: red / 255, green: green / 255, blue: blue / 255)
-    }
-
-    // Начальный и конечный цвета градиента для петалей
-    static let gradientStart = Color(hex: 0x38f5ff)
-    static let gradientEnd = Color.cyan
-
-    // Градиент и маска для цветов градиента
-    static let gradient = LinearGradient(gradient: Gradient(colors: [gradientStart, .cyan, gradientEnd]), startPoint: .top, endPoint: .bottom)
-    static let maskGradient = LinearGradient(gradient: Gradient(colors: [.black]), startPoint: .top, endPoint: .bottom)
-
-    // Размеры для петалей
-    static let maxSize: CGFloat = 140
-    static let minSize: CGFloat = 80
-
-    // Количество петалей и углы для их расположения
-    static let numberOfPetals = 5
-    static let bigAngle = 360 / numberOfPetals
-    static let smallAngle = bigAngle / 2
-
-    // Максимальные и минимальные размеры для "прозрачных" петалей
-    static let ghostMaxSize: CGFloat = maxSize * 0.99
-    static let ghostMinSize: CGFloat = maxSize * 0.95
-}
-
-// Представление для петалей
-private struct Petals: View {
-    let size: CGFloat       // Размер петалей
-    let inhaling: Bool      // Флаг для индикации вдоха
-
-    var isMask = false      // Флаг для маски
-
-    var body: some View {
-        let petalsGradient = isMask ? GlobalSettings.maskGradient : GlobalSettings.gradient // Градиент для петалей
-
-        // ZStack для позиционирования петалей
-        ZStack {
-            ForEach(0..<GlobalSettings.numberOfPetals) { index in
-                petalsGradient
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .mask(
-                        Circle()
-                            .frame(width: size, height: size)
-                            .offset(x: inhaling ? size * 0.5 : 20)
-                            .rotationEffect(.degrees(Double(GlobalSettings.bigAngle * index)))
-                    )
-                    .blendMode(isMask ? .normal : .screen)
-            }
-        }
-    }
-}
 
 // Представление для анимации дыхания
 struct BreathAnimation: View {
     
     // Время для вдоха, выдоха и паузы
-    private let inhaleTime: Double = 5
-    private let exhaleTime: Double = 5
-    private let pauseTimeVdoh: Double = 0
-    private let pauseTimeVidoh: Double = 0
+    @AppStorage("inhaleTime") var inhaleTime: Double = 5
+    @AppStorage("exhaleTime") var  exhaleTime: Double = 5
+    @AppStorage("pauseTimeVdoh") var  pauseTimeVdoh: Double = 0
+    @AppStorage("pauseTimeVidoh") var  pauseTimeVidoh: Double = 0
+    
+  
+ 
+    @AppStorage("selected")  var selectedValues  = [5, 0, 5, 0]
 
     
-    @State private var size = GlobalSettings.minSize                      // Размер петалей
+    @State private var size = GlobalBreathSettings.minSize                      // Размер петалей
     @State private var inhaling = false                    // Флаг для индикации вдоха
 
-    @State private var ghostSize = GlobalSettings.ghostMaxSize            // Размер петалей "призраков"
+    @State private var ghostSize = GlobalBreathSettings.ghostMaxSize            // Размер петалей "призраков"
     @State private var ghostBlur: CGFloat = 0              // Размытие петалей "призраков"
     @State private var ghostOpacity: Double = 0            // Прозрачность петалей "призраков"
     @State var showBreatheView: Bool = false
+  
+    
+    @State private var isPaused = false
+    
+    @State private var timerLabel = "" // Начальное значение для текстовой метки
+    // Счетчик для отображения текущего этапа дыхания
+       @State private var count = 1
     
     var body: some View {
-        
+        ZStack{
+        GeometryReader{proxy in
+            let size = proxy.size
+            Image("BG")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: size.width, height: size.height)
+                .clipped()
+                .opacity(0.1)
+            // MARK: Blurrubg White Breathing
+                .blur(radius:  3 , opaque: true)
+              
+        }
+        .ignoresSafeArea()
+        .onAppear(perform: {
+            inhaleTime = Double(selectedValues[0])
+            pauseTimeVdoh = Double(selectedValues[1])
+            exhaleTime = Double(selectedValues[2])
+            pauseTimeVidoh = Double(selectedValues[3])
+        })
         VStack {
             // ZStack для позиционирования элементов анимации
             ZStack {
-                Color.white
-                    .edgesIgnoringSafeArea(.all)
+               
                 
                 ZStack {
                     // Петали "призраки" при выдохе
@@ -110,54 +72,118 @@ struct BreathAnimation: View {
                     
                     // Маска для петалей, чтобы избежать 'прыжка' цвета при выдохе
                     Petals(size: size, inhaling: inhaling, isMask: true)
-                    
+                 
                     // Перекрывающиеся петали
                     Petals(size: size, inhaling: inhaling)
                     Petals(size: size, inhaling: inhaling)
-                        .rotationEffect(.degrees(Double(GlobalSettings.smallAngle)))
+                        .rotationEffect(.degrees(Double(GlobalBreathSettings.smallAngle)))
                         .opacity(inhaling ? 0.8 : 0.6)
                 }
-                .rotationEffect(.degrees(Double(inhaling ? GlobalSettings.bigAngle : -GlobalSettings.smallAngle)))
+                .rotationEffect(.degrees(Double(inhaling ? GlobalBreathSettings.bigAngle : -GlobalBreathSettings.smallAngle)))
                 .drawingGroup()
             }
-         
-            
-            Button(action: {
-                showBreatheView.toggle()
-                if showBreatheView{
-                    performAnimations()
-                }
-            }, label: {
-                Text("Старт")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white.opacity(0.75) )
-                    .padding(.vertical,15)
-                    .frame(maxWidth: .infinity)
-                    .background {
-                       
-                        RoundedRectangle(cornerRadius: 12, style: .continuous)
-                            .fill(.cyan.gradient)
-                    }
+            .overlay(content: {
+                ProgressBarButtonView(value: "\(count)")
+                    
+
             })
-            .frame(width: 250)
-            .padding()
+            
+            
+           // Текстовая метка для отображения этапа дыхания
+                 Text(timerLabel)
+                .font(.title)
+                .foregroundColor(.cyan)
+                .padding()
+                     // Применение анимации для изменения прозрачности текста
+                     .opacity(showBreatheView ? 1.0 : 0.001)
+                     .animation(.easeInOut) // Анимация появления текста без задержки
+                     .onAppear {
+                         timerLabel = "Вдох" // Установка начального значения текстовой метки
+                     }
+                              
+            
+            HStack{
+                Button(action: {
+                    stopAnimations()
+                }, label: {
+                    Text("Стоп")
+                        .font(.system(size: 25))
+                        .foregroundColor(.white.opacity(0.75))
+                        .padding(.vertical, 6)
+                        .frame(maxWidth: .infinity)
+                        .background {
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .fill(Color.cyan.gradient)
+                        }
+                })
+                .padding(.trailing, 5.0)
+                .frame(width: 130)
+                
+                
+                
+                Button(action: {
+                    showBreatheView.toggle()
+                    if showBreatheView{
+                        performAnimations()
+                    }
+                }, label: {
+                    Text("Старт")
+                        .font(.system(size: 25))
+                        .foregroundColor(.white.opacity(0.75))
+                        .padding(.vertical, 6)
+                        .frame(maxWidth: .infinity)
+                        .background {
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .fill(Color.cyan.gradient)
+                        }
+                })
+                .padding(.leading, 5.0)
+                .frame(width: 130)
+                
+            }
+            .padding(.bottom, 120.0)
+            
+            
+            
         }
+        .offset(x: 0 ,y: 90)
+
+    }
         
+    }
+    
+ 
+    // Функция для остановки анимации
+    private func stopAnimations() {
+        // Сбрасываем все состояния и останавливаем таймеры
+        inhaling = false
+        size = GlobalBreathSettings.minSize
+        ghostSize = GlobalBreathSettings.ghostMaxSize
+        ghostBlur = 0
+        ghostOpacity = 0
+        showBreatheView = false
+        timerLabel = "" // Сброс текстовой метки
+        count = 1 // Сброс счетчика
     }
 
     // Функция для выполнения анимаций
     private func performAnimations() {
+        guard showBreatheView else { return } // Проверяем условие для запуска анимации
+        guard showBreatheView && !isPaused else { return }
         // Анимация вдоха
         withAnimation(.easeInOut(duration: inhaleTime)) {
-            inhaling = true
-            size = GlobalSettings.maxSize
+           inhaling = true
+            size = GlobalBreathSettings.maxSize
+            timerLabel = "Вдох" // Обновление текстовой метки
         }
 
         // Таймер для переключения на выдох после заданного времени вдоха
         Timer.scheduledTimer(withTimeInterval: inhaleTime + pauseTimeVdoh, repeats: false) { _ in
-            ghostSize = GlobalSettings.ghostMaxSize
+            
+            ghostSize = GlobalBreathSettings.ghostMaxSize
             ghostBlur = 0
             ghostOpacity = 0.8
+            
 
             // Таймер для настройки анимации "призраков"
             Timer.scheduledTimer(withTimeInterval: exhaleTime * 0.3, repeats: false) { _ in
@@ -170,16 +196,53 @@ struct BreathAnimation: View {
             // Анимация выдоха
             withAnimation(.easeInOut(duration: exhaleTime)) {
                 inhaling = false
-                size = GlobalSettings.minSize
-                ghostSize = GlobalSettings.ghostMinSize
+                size = GlobalBreathSettings.minSize
+                ghostSize = GlobalBreathSettings.ghostMinSize
+                timerLabel = "Выдох" // Обновление текстовой метки
+              
+            }
+        }
+        
+
+        // Проверяем условие для отображения метки "Задержка"
+        if pauseTimeVdoh > 0 {
+            // Установка метки "Задержка" после выдоха
+            Timer.scheduledTimer(withTimeInterval: inhaleTime , repeats: false) { _ in
+                    timerLabel = "Задержка"
             }
         }
 
+        // Проверяем условие для отображения метки "Задержка"
+        if pauseTimeVidoh > 0 {
+            // Установка метки "Задержка" после выдоха
+            Timer.scheduledTimer(withTimeInterval: inhaleTime + pauseTimeVdoh + exhaleTime , repeats: false) { _ in
+                    timerLabel = "Задержка"
+            }
+        }
+        
+//            // Обновление счетчика в соответствии с текущим этапом дыхания
+//            Timer.scheduledTimer(withTimeInterval: 1 , repeats: inhaleTimeBool) { _ in
+//                count += 1
+//                if count > Int(inhaleTime){
+//                   count = 1
+//                    inhaleTimeBool = false
+//                    
+//            }
+//                
+//        }
+//        
+        
+        
+        
         // Таймер для повторной анимации после завершения одного цикла
         Timer.scheduledTimer(withTimeInterval: inhaleTime + pauseTimeVdoh + exhaleTime + pauseTimeVidoh, repeats: false) { _ in
+           
             performAnimations()
+            
         }
     }
+    
+
 }
 
 // Предварительный просмотр анимации дыхания

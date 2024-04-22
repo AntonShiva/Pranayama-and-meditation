@@ -15,8 +15,9 @@ struct Carusel: View {
     @State private var snappedItem = 0.0
     @State private var draggingItem = 0.0
     @State var activeIndex: Int = 0
+ 
     
-    @AppStorage("selectedValues")  var selectedValues  = [5, 0, 5, 0]
+    @AppStorage("selected")  var selectedValues  = [5, 0, 5, 0]
     @AppStorage("isShowing") var isShowing = false
 
     
@@ -72,7 +73,7 @@ struct Carusel: View {
             }
             .sheet(isPresented: $isShowingBreath) {
                 VStack {
-          BreatheView()
+          BreathAnimation()
                     
                 }
                 

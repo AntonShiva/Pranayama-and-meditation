@@ -16,7 +16,7 @@ struct BreathingCycleSettingView: View {
     
     @Binding var isShowing: Bool
     
-    @AppStorage("indexBasics")  var indexBasics  = [4, 0, 4, 0]
+    @AppStorage("index")  var indexBasics  = [4, 0, 4, 0]
     @Binding var selectedValues: [Int]
     
 //    @Binding var dailyRate: [Int]

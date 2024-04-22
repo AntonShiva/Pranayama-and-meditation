@@ -17,7 +17,7 @@ struct ProgressBarButtonView: View {
                     ZStack {
                         Circle()
                             .stroke(style: .init(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
-                            .frame(width: 60, height: 60)
+                            .frame(width: 70, height: 70)
                             
                       
                         
