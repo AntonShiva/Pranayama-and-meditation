@@ -38,6 +38,15 @@ struct BreathAnimation: View {
     // Счетчик для отображения текущего этапа дыхания
        @State private var count = 1
     
+//    _______________________
+    
+    @State var currentIndex = 0
+    @State var timeRemaining: Int = 1
+    @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var isTimerRunning = false
+    @State var pauseResumeBtn = "Start"
+    @State var cycle = 0 // Добавляем переменную для хранения текущего цикла
+    
     var body: some View {
         ZStack{
         GeometryReader{proxy in
@@ -83,9 +92,38 @@ struct BreathAnimation: View {
                 .drawingGroup()
             }
             .overlay(content: {
-                ProgressBarButtonView(value: "\(count)")
-                    
-
+             
+                ZStack{
+                    Circle()
+                        .stroke(style: .init(lineWidth: 5, lineCap: .round, lineJoin: .round))
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(.white)
+                    if isTimerRunning {
+                        
+                        Text("\(timeRemaining)")
+                            .fontWeight(.heavy)
+                            .font(.system(size: 36))
+                            .foregroundColor(.mint)
+                            .onReceive(timer) { _ in
+                                if isTimerRunning && timeRemaining < selectedValues[currentIndex] {
+                                    timeRemaining += 1
+                                } else {
+                                    currentIndex += 1
+                                    if currentIndex >= selectedValues.count {
+                                        // Если достигли конца массива, увеличиваем значение цикла и сбрасываем индекс
+                                        cycle += 1
+                                        currentIndex = 0
+                                    }
+                                    timeRemaining = 1
+                                }
+                            }
+                    } else {
+                        Image(systemName: "atom")
+                            .font(.system(size: 36))
+                            .foregroundColor(.white)
+                    }
+                }
+                
             })
             
             
@@ -102,11 +140,18 @@ struct BreathAnimation: View {
                      }
                               
             
+            
             HStack{
                 Button(action: {
                     stopAnimations()
+                    isTimerRunning = false
+                    pauseResumeBtn = "Start"
+                    currentIndex = 0
+                    timeRemaining = 1
+                    cycle = 0 // Сбрасываем цикл при остановке
+                    self.timer.upstream.connect().cancel()
                 }, label: {
-                    Text("Стоп")
+                    Text("Stop")
                         .font(.system(size: 25))
                         .foregroundColor(.white.opacity(0.75))
                         .padding(.vertical, 6)
@@ -126,8 +171,21 @@ struct BreathAnimation: View {
                     if showBreatheView{
                         performAnimations()
                     }
+                    if pauseResumeBtn == "Start" {
+                        pauseResumeBtn = "Pause"
+                        isTimerRunning = true
+                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    } else if pauseResumeBtn == "Pause" {
+                        pauseResumeBtn = "Resume"
+                        isTimerRunning = false
+                        self.timer.upstream.connect().cancel()
+                    } else {
+                        pauseResumeBtn = "Pause"
+                        isTimerRunning = true
+                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    }
                 }, label: {
-                    Text("Старт")
+                    Text(pauseResumeBtn)
                         .font(.system(size: 25))
                         .foregroundColor(.white.opacity(0.75))
                         .padding(.vertical, 6)
