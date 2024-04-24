@@ -26,6 +26,13 @@
 		2D81CBFA2BC979F300471763 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBF92BC979F300471763 /* Extension.swift */; };
 		2DD47F3B2BD4F39700825EFE /* GlobalBreathSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F3A2BD4F39700825EFE /* GlobalBreathSettings.swift */; };
 		2DD47F3D2BD4F3FD00825EFE /* Petals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F3C2BD4F3FD00825EFE /* Petals.swift */; };
+		2DD47F4A2BD8CDE200825EFE /* exhale_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F492BD8CDE200825EFE /* exhale_3.mp3 */; };
+		2DD47F4C2BD8CDEA00825EFE /* hold_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F4B2BD8CDEA00825EFE /* hold_3.mp3 */; };
+		2DD47F4E2BD8CDF900825EFE /* inhale_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F4D2BD8CDF900825EFE /* inhale_3.mp3 */; };
+		2DD47F5E2BD91ACD00825EFE /* tick_metronome_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F5D2BD91ACD00825EFE /* tick_metronome_high.mp3 */; };
+		2DD47F602BD91B0C00825EFE /* tick_metronome_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F5F2BD91B0C00825EFE /* tick_metronome_low.mp3 */; };
+		2DD47F622BD91D6E00825EFE /* MetronomePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */; };
+		2DD47F642BD938EF00825EFE /* BreathAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +56,13 @@
 		2D81CBF92BC979F300471763 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		2DD47F3A2BD4F39700825EFE /* GlobalBreathSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBreathSettings.swift; sourceTree = "<group>"; };
 		2DD47F3C2BD4F3FD00825EFE /* Petals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petals.swift; sourceTree = "<group>"; };
+		2DD47F492BD8CDE200825EFE /* exhale_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = exhale_3.mp3; sourceTree = "<group>"; };
+		2DD47F4B2BD8CDEA00825EFE /* hold_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hold_3.mp3; sourceTree = "<group>"; };
+		2DD47F4D2BD8CDF900825EFE /* inhale_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inhale_3.mp3; sourceTree = "<group>"; };
+		2DD47F5D2BD91ACD00825EFE /* tick_metronome_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tick_metronome_high.mp3; sourceTree = "<group>"; };
+		2DD47F5F2BD91B0C00825EFE /* tick_metronome_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tick_metronome_low.mp3; sourceTree = "<group>"; };
+		2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomePlayer.swift; sourceTree = "<group>"; };
+		2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +95,7 @@
 		2D0E83002BB6C39A0076B2CC /* Pranayama and meditation */ = {
 			isa = PBXGroup;
 			children = (
+				2DD47F462BD8CD9800825EFE /* Audio */,
 				2D0E83012BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift */,
 				2D0E83032BB6C39A0076B2CC /* ContentView.swift */,
 				2D81CBF42BC8218000471763 /* View */,
@@ -93,6 +108,8 @@
 				2D76C9822BD2A69000B51962 /* BreathAnimation.swift */,
 				2DD47F3A2BD4F39700825EFE /* GlobalBreathSettings.swift */,
 				2DD47F3C2BD4F3FD00825EFE /* Petals.swift */,
+				2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */,
+				2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */,
 			);
 			path = "Pranayama and meditation";
 			sourceTree = "<group>";
@@ -142,6 +159,18 @@
 				2D76C97A2BCE51B700B51962 /* ProgressBarButtonView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2DD47F462BD8CD9800825EFE /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				2DD47F5F2BD91B0C00825EFE /* tick_metronome_low.mp3 */,
+				2DD47F4D2BD8CDF900825EFE /* inhale_3.mp3 */,
+				2DD47F5D2BD91ACD00825EFE /* tick_metronome_high.mp3 */,
+				2DD47F4B2BD8CDEA00825EFE /* hold_3.mp3 */,
+				2DD47F492BD8CDE200825EFE /* exhale_3.mp3 */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +231,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DD47F4A2BD8CDE200825EFE /* exhale_3.mp3 in Resources */,
+				2DD47F4C2BD8CDEA00825EFE /* hold_3.mp3 in Resources */,
+				2DD47F602BD91B0C00825EFE /* tick_metronome_low.mp3 in Resources */,
+				2DD47F5E2BD91ACD00825EFE /* tick_metronome_high.mp3 in Resources */,
+				2DD47F4E2BD8CDF900825EFE /* inhale_3.mp3 in Resources */,
 				2D0E83092BB6C39C0076B2CC /* Preview Assets.xcassets in Resources */,
 				2D0E83062BB6C39C0076B2CC /* Assets.xcassets in Resources */,
 			);
@@ -215,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D81CBFA2BC979F300471763 /* Extension.swift in Sources */,
+				2DD47F642BD938EF00825EFE /* BreathAnimationView.swift in Sources */,
 				2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */,
 				2DD47F3B2BD4F39700825EFE /* GlobalBreathSettings.swift in Sources */,
 				2D81CBF02BC6D53400471763 /* WheelPickerView.swift in Sources */,
@@ -227,6 +262,7 @@
 				2D0E83142BB6FF440076B2CC /* TabBarView.swift in Sources */,
 				2DD47F3D2BD4F3FD00825EFE /* Petals.swift in Sources */,
 				2D81CBEC2BC582BE00471763 /* TabloPusk.swift in Sources */,
+				2DD47F622BD91D6E00825EFE /* MetronomePlayer.swift in Sources */,
 				2D76C9832BD2A69000B51962 /* BreathAnimation.swift in Sources */,
 				2D76C97B2BCE51B700B51962 /* ProgressBarButtonView.swift in Sources */,
 				2D0E83022BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift in Sources */,
