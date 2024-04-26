@@ -26,9 +26,9 @@
 		2D81CBFA2BC979F300471763 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBF92BC979F300471763 /* Extension.swift */; };
 		2DD47F3B2BD4F39700825EFE /* GlobalBreathSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F3A2BD4F39700825EFE /* GlobalBreathSettings.swift */; };
 		2DD47F3D2BD4F3FD00825EFE /* Petals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F3C2BD4F3FD00825EFE /* Petals.swift */; };
-		2DD47F4A2BD8CDE200825EFE /* exhale_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F492BD8CDE200825EFE /* exhale_3.mp3 */; };
-		2DD47F4C2BD8CDEA00825EFE /* hold_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F4B2BD8CDEA00825EFE /* hold_3.mp3 */; };
-		2DD47F4E2BD8CDF900825EFE /* inhale_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F4D2BD8CDF900825EFE /* inhale_3.mp3 */; };
+		2DD47F4A2BD8CDE200825EFE /* exhale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F492BD8CDE200825EFE /* exhale.mp3 */; };
+		2DD47F4C2BD8CDEA00825EFE /* hold.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F4B2BD8CDEA00825EFE /* hold.mp3 */; };
+		2DD47F4E2BD8CDF900825EFE /* inhale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F4D2BD8CDF900825EFE /* inhale.mp3 */; };
 		2DD47F5E2BD91ACD00825EFE /* tick_metronome_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F5D2BD91ACD00825EFE /* tick_metronome_high.mp3 */; };
 		2DD47F602BD91B0C00825EFE /* tick_metronome_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F5F2BD91B0C00825EFE /* tick_metronome_low.mp3 */; };
 		2DD47F622BD91D6E00825EFE /* MetronomePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */; };
@@ -56,9 +56,9 @@
 		2D81CBF92BC979F300471763 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		2DD47F3A2BD4F39700825EFE /* GlobalBreathSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBreathSettings.swift; sourceTree = "<group>"; };
 		2DD47F3C2BD4F3FD00825EFE /* Petals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petals.swift; sourceTree = "<group>"; };
-		2DD47F492BD8CDE200825EFE /* exhale_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = exhale_3.mp3; sourceTree = "<group>"; };
-		2DD47F4B2BD8CDEA00825EFE /* hold_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hold_3.mp3; sourceTree = "<group>"; };
-		2DD47F4D2BD8CDF900825EFE /* inhale_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inhale_3.mp3; sourceTree = "<group>"; };
+		2DD47F492BD8CDE200825EFE /* exhale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = exhale.mp3; sourceTree = "<group>"; };
+		2DD47F4B2BD8CDEA00825EFE /* hold.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hold.mp3; sourceTree = "<group>"; };
+		2DD47F4D2BD8CDF900825EFE /* inhale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inhale.mp3; sourceTree = "<group>"; };
 		2DD47F5D2BD91ACD00825EFE /* tick_metronome_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tick_metronome_high.mp3; sourceTree = "<group>"; };
 		2DD47F5F2BD91B0C00825EFE /* tick_metronome_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tick_metronome_low.mp3; sourceTree = "<group>"; };
 		2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomePlayer.swift; sourceTree = "<group>"; };
@@ -165,10 +165,10 @@
 			isa = PBXGroup;
 			children = (
 				2DD47F5F2BD91B0C00825EFE /* tick_metronome_low.mp3 */,
-				2DD47F4D2BD8CDF900825EFE /* inhale_3.mp3 */,
 				2DD47F5D2BD91ACD00825EFE /* tick_metronome_high.mp3 */,
-				2DD47F4B2BD8CDEA00825EFE /* hold_3.mp3 */,
-				2DD47F492BD8CDE200825EFE /* exhale_3.mp3 */,
+				2DD47F4D2BD8CDF900825EFE /* inhale.mp3 */,
+				2DD47F4B2BD8CDEA00825EFE /* hold.mp3 */,
+				2DD47F492BD8CDE200825EFE /* exhale.mp3 */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -231,11 +231,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DD47F4A2BD8CDE200825EFE /* exhale_3.mp3 in Resources */,
-				2DD47F4C2BD8CDEA00825EFE /* hold_3.mp3 in Resources */,
+				2DD47F4A2BD8CDE200825EFE /* exhale.mp3 in Resources */,
+				2DD47F4C2BD8CDEA00825EFE /* hold.mp3 in Resources */,
 				2DD47F602BD91B0C00825EFE /* tick_metronome_low.mp3 in Resources */,
 				2DD47F5E2BD91ACD00825EFE /* tick_metronome_high.mp3 in Resources */,
-				2DD47F4E2BD8CDF900825EFE /* inhale_3.mp3 in Resources */,
+				2DD47F4E2BD8CDF900825EFE /* inhale.mp3 in Resources */,
 				2D0E83092BB6C39C0076B2CC /* Preview Assets.xcassets in Resources */,
 				2D0E83062BB6C39C0076B2CC /* Assets.xcassets in Resources */,
 			);
