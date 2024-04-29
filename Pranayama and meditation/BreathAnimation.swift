@@ -14,6 +14,8 @@ import AVFoundation
 // Представление для анимации дыхания
 struct BreathAnimation: View {
     
+    @State var isShowingBreath: Bool = false
+    
     // Время для вдоха, выдоха и паузы
     @AppStorage("inhaleTime") var inhaleTime: Double = 5
     @AppStorage("exhaleTime") var  exhaleTime: Double = 5
@@ -30,7 +32,7 @@ struct BreathAnimation: View {
     @State private var ghostOpacity: Double = 0            // Прозрачность петалей "призраков"
     @State var showBreatheView: Bool = false
     
-    @State var startPausLabel = "Начать сессию"
+    @State var startPausLabel = "Старт"
     
     @State private var isPaused = false
     
@@ -42,7 +44,9 @@ struct BreathAnimation: View {
     
     @State var currentIndex = 0
     @State var timeRemaining: Int = 1
-    @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    @State var timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+    
     
     @State var isTimerRunning = false
     @State var pauseResumeBtn = "Start"
@@ -52,6 +56,16 @@ struct BreathAnimation: View {
     
     // Инициализация экземпляра класса MetronomePlayer
     var metronomePlayer = MetronomePlayer()
+    
+    // Старт
+  // отображение стартового отсчета
+    @State var start = true
+    // счетчкик стартового таймера
+    @State var countTimer = 0
+    // отображаемое число отсчета
+    @State var startTimerCount: Int = 4
+    // Start timer
+    @State var startTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
    var body: some View {
         ZStack{
@@ -83,6 +97,7 @@ struct BreathAnimation: View {
                     
                     .rotationEffect(.degrees(Double(inhaling ? GlobalBreathSettings.bigAngle : -GlobalBreathSettings.smallAngle)))
                     .drawingGroup()
+                    .frame(width: 300, height: 300, alignment: .center)
                     
                     BreathAnimationView(timeRemaining: $timeRemaining)
                         .opacity( isTimerRunning ? 1 : 0)
@@ -93,6 +108,34 @@ struct BreathAnimation: View {
                     exhaleTime = Double(selectedValues[2])
                     pauseTimeVidoh = Double(selectedValues[3])
                 })
+               
+                   
+                                       
+                .onAppear(perform: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        showBreatheView.toggle()
+                        timerLabel = "Вдох"
+                        
+                        
+                        // Проигрываем звуковой эффект на каждый счет
+                        metronomePlayer.playInhaleAndTickSounds(sound: "inhale")
+                        
+                        if showBreatheView{
+                            performAnimations()
+                        }
+                        if pauseResumeBtn == "Start" {
+                            
+                            isTimerRunning = true
+                            if selectedValues.contains(where: { $0 > 0 }) {
+                                isTimerRunning = true
+                                timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                            }
+                            
+                        }
+                    }
+                })
+                  
+                
                 .overlay(content: {
                     
                     ZStack{
@@ -109,9 +152,37 @@ struct BreathAnimation: View {
                                     handleTimerTick() 
                                }
                         } else {
-                            Image(systemName: "atom")
-                                .font(.system(size: 36))
-                                .foregroundColor(.white)
+                            // Табло старт
+                            ZStack{
+                                Image(systemName: "atom")
+                                    .font(.system(size: 36))
+                                    .foregroundColor(.white)
+                                // Табло старт
+                                if start{
+                                Text("\(startTimerCount)")
+                                    .onReceive(startTimer) { _ in
+                                        if startTimerCount != 0 {
+                                            countTimer += 1
+                                            startTimerCount = 4 - Int(countTimer)
+                                            
+                                            if startTimerCount >= 1 {
+                                                metronomePlayer.playSound(sound: "tick_metronome_low", type: "mp3")
+                                            }
+                                            if startTimerCount == 0 {
+                                                metronomePlayer.stopSound()
+                                                start = false
+                                                self.startTimer.upstream.connect().cancel()
+                                                startTimerCount = 0
+                                                //                                showStart = false
+                                            }
+                                        }
+                                        
+                                    }
+                                    .fontWeight(.heavy)
+                                    .font(.system(size: 36))
+                                    .foregroundColor(Color(hex: 0x05C3F0))
+                            }
+                            }
                         }
                     }
                     
@@ -127,14 +198,24 @@ struct BreathAnimation: View {
                     
                         .padding(.bottom, 100.0)
                         .transition(AnyTransition.opacity.animation(.easeInOut(duration:1.5)))
-                }else{
-                    Text(startPausLabel)
+                } else {
+                    Text("Старт")
                         .font(.title)
                         .foregroundColor(.cyan)
+                    
+                    // Применение анимации для изменения прозрачности текста
+                    
                         .padding(.bottom, 100.0)
-                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 1.5)))
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration:1.5)))
                 }
+                
+                
+              
+
+
+             
                HStack{
+                   
                     Button(action: {
                         stopAnimations()
                         isTimerRunning = false
@@ -145,6 +226,7 @@ struct BreathAnimation: View {
                         startPausLabel = "На паузе"
                         self.timer.upstream.connect().cancel()
                         metronomePlayer.stopSound()
+                        isShowingBreath = false
                     }, label: {
                         Text("Stop")
                             .font(.system(size: 25))
@@ -158,6 +240,8 @@ struct BreathAnimation: View {
                     })
                     .padding(.trailing, 5.0)
                     .frame(width: 130)
+                   
+                   
                     
                    Button(action: {
                         showBreatheView.toggle()
@@ -217,6 +301,7 @@ struct BreathAnimation: View {
 
             if currentIndex == 0 || currentIndex == 2 {
                 timerLabel = currentIndex == 0 ? "Вдох" : "Выдох"
+                
                 metronomePlayer.playInhaleAndTickSounds(sound: currentIndex == 0 ? "inhale" : "exhale")
             }
             // Проверяем специальные случаи
@@ -240,12 +325,16 @@ struct BreathAnimation: View {
                 // Воспроизводим звук задержки после вдоха, если второе значение больше нуля
                 timerLabel = "Здаержка"
                 metronomePlayer.playInhaleAndTickSounds(sound: "hold")
+               
             } else if currentIndex == 3 && selectedValues[3] > 0 {
                 // Воспроизводим звук задержки после выдоха, если четвертое значение больше нуля
                 timerLabel = "Задержка"
                 metronomePlayer.playInhaleAndTickSounds(sound: "hold")
             }
+            
+            
         }
+        
     }
 
     

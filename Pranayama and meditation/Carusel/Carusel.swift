@@ -71,13 +71,10 @@ struct Carusel: View {
                 
                 .presentationDetents([.large])
             }
-            .sheet(isPresented: $isShowingBreath) {
-                VStack {
-          BreathAnimation()
-                    
-                }
-                
-                .presentationDetents([.large])
+            .fullScreenCover(isPresented: $isShowingBreath) {
+              
+                BreathAnimation(isShowingBreath: isShowingBreath)
+                    .ignoresSafeArea()
             }
             
 //            .fullScreenCover(isPresented: $isShowingBreath) {

@@ -24,7 +24,7 @@ struct GlobalBreathSettings {
     static let maskGradient = LinearGradient(gradient: Gradient(colors: [.black]), startPoint: .top, endPoint: .bottom)
 
     // Размеры для петалей
-    static let maxSize: CGFloat = 140
+    static let maxSize: CGFloat = 130
     static let minSize: CGFloat = 80
 
     // Количество петалей и углы для их расположения

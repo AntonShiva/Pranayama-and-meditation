@@ -20,7 +20,7 @@ struct BreathAnimationView: View {
             Text("\(timeRemaining)")
                 .fontWeight(.heavy)
                 .font(.system(size: 36))
-                .foregroundColor(.mint)
+                .foregroundColor(Color(hex: 0x05C3F0))
         }
     }
 }

@@ -20,7 +20,8 @@ class MetronomePlayer {
     func stopSound() {
             audioPlayer?.stop()
         audioEngine.stop()
-
+        inhalePlayer.stop()
+        tickPlayer.stop()
         }
     
     func playInhaleAndTickSounds(sound: String) {
@@ -51,14 +52,14 @@ class MetronomePlayer {
              
              // Стартуем движок
              try audioEngine.start()
-            
+           
                  self.inhalePlayer.play()
              
-             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+           
                  
                  // Воспроизводим оба звука одновременно
                  self.tickPlayer.play()
-             }
+            
            
          } catch {
              print("Ошибка проигрывания звуков: \(error.localizedDescription)")
