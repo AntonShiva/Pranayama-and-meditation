@@ -73,7 +73,7 @@ struct Carusel: View {
             }
             .fullScreenCover(isPresented: $isShowingBreath) {
               
-                BreathAnimation(isShowingBreath: isShowingBreath)
+                BreathAnimation(isShowingBreath: $isShowingBreath)
                     .ignoresSafeArea()
             }
             

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D00FAFB2BDF6ABB00A7BB7E /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00FAFA2BDF6ABB00A7BB7E /* AlertView.swift */; };
 		2D0E83022BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E83012BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift */; };
 		2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E83032BB6C39A0076B2CC /* ContentView.swift */; };
 		2D0E83062BB6C39C0076B2CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0E83052BB6C39C0076B2CC /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D00FAFA2BDF6ABB00A7BB7E /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		2D0E82FE2BB6C39A0076B2CC /* Pranayama and meditation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pranayama and meditation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0E83012BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pranayama_and_meditationApp.swift; sourceTree = "<group>"; };
 		2D0E83032BB6C39A0076B2CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				2DD47F3C2BD4F3FD00825EFE /* Petals.swift */,
 				2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */,
 				2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */,
+				2D00FAFA2BDF6ABB00A7BB7E /* AlertView.swift */,
 			);
 			path = "Pranayama and meditation";
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */,
 				2DD47F3B2BD4F39700825EFE /* GlobalBreathSettings.swift in Sources */,
 				2D81CBF02BC6D53400471763 /* WheelPickerView.swift in Sources */,
+				2D00FAFB2BDF6ABB00A7BB7E /* AlertView.swift in Sources */,
 				2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */,
 				2D81CBEA2BC2ADB300471763 /* BreathingCycleSettingView.swift in Sources */,
 				2D81CBE02BC1D22600471763 /* Store.swift in Sources */,
