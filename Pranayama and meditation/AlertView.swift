@@ -12,7 +12,11 @@ struct AlertView: View {
     @Binding var isShowingBreath: Bool
     @Binding var start: Bool
     @Binding var startTimerCount: Int
-   
+    
+    // отображение сколько циклов дыхание прошло
+    @Binding var cycle: Int
+    
+   // Обновление вью
     @Binding var refreshView: Bool
     
     var body: some View {
@@ -26,7 +30,7 @@ struct AlertView: View {
                         .foregroundStyle(.white)
                         .bold()
                     
-               Text("Прежде чем продолжить сделайте несколько глубоких вдохов и выдохов")
+               Text("Прежде чем продолжить сессию сделайте глубокий вдохов и полный выдох")
                         .font(.system(size: 20))
                         .multilineTextAlignment(.center)
                         .padding([.leading, .bottom], 10.0)
@@ -40,6 +44,7 @@ struct AlertView: View {
                         Button {
                             alertShow = false
                             isShowingBreath = false
+                            cycle = 0 // Сбрасываем цикл при остановке
                         } label: {
                             HStack (spacing: 12) {
                                 Text("Стоп")

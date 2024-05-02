@@ -69,9 +69,16 @@ struct BreathAnimation: View {
     
     // Alert флаг
     @State private var alertShow = false
-    
-    
+    // Обновление вью
     @State private var refreshView = false
+    
+    // Счетчик времени дыхательной сессии
+    @State private var elapsedTimer: Timer?
+    // Секунды
+    @State private var elapsedSeconds: Int = 0
+    //Минтуты
+    @State private var elapsedMinutes: Int = 0
+    
     
    var body: some View {
         ZStack{
@@ -80,6 +87,23 @@ struct BreathAnimation: View {
                 .ignoresSafeArea()
             
             VStack {
+                
+                // Отображение циклов дыхания
+                HStack(spacing: 50.0) {
+                    VStack{
+                        Text("\(cycle)")
+                            .font(.title)
+                            .foregroundColor(.cyan)
+                        
+                        Text("Цикл")
+                            .font(.title2)
+                            .foregroundColor(.cyan)
+                    }
+                    Text(elapsedMinutes == 0 ? "\(elapsedSeconds) " : "\(elapsedMinutes):\(String(format: "%02d", elapsedSeconds))")
+                        .font(.title2)
+                        .foregroundColor(.cyan)
+                }
+                
                 // ZStack для позиционирования элементов анимации
                 ZStack {
                    ZStack {
@@ -117,20 +141,22 @@ struct BreathAnimation: View {
                // запуск анимации с задержкой в 4 сек
                 .onAppear(perform: {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                        showBreatheView = true
-                        timerLabel = "Вдох"
-                       // Проигрываем звуковой эффект на каждый счет
-                        metronomePlayer.playInhaleAndTickSounds(sound: "inhale")
-                        
-                        if showBreatheView{
-                            performAnimations()
-                        }
-                       
-                          isTimerRunning = true
+                        if !alertShow {
+                            showBreatheView = true
+                            timerLabel = "Вдох"
+                            // Проигрываем звуковой эффект на каждый счет
+                            metronomePlayer.playInhaleAndTickSounds(sound: "inhale")
+                            
+                            if showBreatheView{
+                                performAnimations()
+                            }
+                            
+                            isTimerRunning = true
                             if selectedValues.contains(where: { $0 > 0 }) {
                                 isTimerRunning = true
                                 timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                             }
+                        }
                     }
                 })
                 // отображение таймера с логикой
@@ -161,7 +187,7 @@ struct BreathAnimation: View {
                                         if startTimerCount != 0 {
                                             countTimer += 1
                                             startTimerCount = 4 - Int(countTimer)
-                                            
+                                     
                                             if startTimerCount >= 1 {
                                                 metronomePlayer.playSound(sound: "tick_metronome_low", type: "mp3")
                                             }
@@ -185,7 +211,7 @@ struct BreathAnimation: View {
                         
                         // Отображение кастомного алерта
                         if alertShow {
-                            AlertView(alertShow: $alertShow, isShowingBreath: $isShowingBreath, start: $start, startTimerCount: $startTimerCount, refreshView: $refreshView) 
+                            AlertView(alertShow: $alertShow, isShowingBreath: $isShowingBreath, start: $start, startTimerCount: $startTimerCount, cycle: $cycle, refreshView: $refreshView) 
                         }
                     }
                     
@@ -194,6 +220,7 @@ struct BreathAnimation: View {
               
                 
                 if showBreatheView {
+  
                     // Текстовая метка для отображения этапа дыхания
                     Text(timerLabel)
                         .font(.title)
@@ -222,11 +249,20 @@ struct BreathAnimation: View {
                         isTimerRunning = false
                        currentIndex = 0
                         timeRemaining = 1
-                        cycle = 0 // Сбрасываем цикл при остановке
+                        
                         startPausLabel = "На паузе"
                         self.timer.upstream.connect().cancel()
                         metronomePlayer.stopSound()
                         alertShow = true
+                        
+                        metronomePlayer.stopSound()
+                        start = false
+                        self.startTimer.upstream.connect().cancel()
+                        countTimer = 0
+                        startTimerCount = 0
+                        
+                        // Остановка таймера отсчета секунд и минут
+                            stopElapsedTimer()
                     }, label: {
                         Text("Пауза")
                             .font(.system(size: 25))
@@ -243,47 +279,39 @@ struct BreathAnimation: View {
                    
                    
                     
-//                   Button(action: {
-//                        showBreatheView.toggle()
-//                       timerLabel = "Вдох"
-//                      
-//                           
-//                           // Проигрываем звуковой эффект на каждый счет
-//                           metronomePlayer.playInhaleAndTickSounds(sound: "inhale")
-//                       
-//                        if showBreatheView{
-//                            performAnimations()
-//                        }
-//                        if pauseResumeBtn == "Start" {
-//                           
-//                            isTimerRunning = true
-//                            if selectedValues.contains(where: { $0 > 0 }) {
-//                                   isTimerRunning = true
-//                                   timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-//                               }
-//                            
-//                        }
-//                    }, label: {
-//                        Text(pauseResumeBtn)
-//                            .font(.system(size: 25))
-//                            .foregroundColor(.white.opacity(0.75))
-//                            .padding(.vertical, 6)
-//                            .frame(maxWidth: .infinity)
-//                            .background {
-//                                RoundedRectangle(cornerRadius: 12, style: .continuous)
-//                                    .fill(Color.cyan.gradient)
-//                            }
-//                    })
-//                    .padding(.leading, 5.0)
-//                    .frame(width: 130)
+                 .frame(width: 130)
                     
                 }
               .blur(radius: alertShow ? 2 : 0)
             }
            
         }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                startElapsedTimer()
+            }
+        }
+        .onDisappear {
+            stopElapsedTimer()
+        }
         .id(refreshView) // Добавление .id для перезагрузки представления
         
+    }
+    
+  // Запуск счетчика времени дыхательной сессии
+    private func startElapsedTimer() {
+        elapsedTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            elapsedSeconds += 1
+            if elapsedSeconds == 60 {
+                elapsedSeconds = 0
+                elapsedMinutes += 1
+            }
+        }
+    }
+    // Остановка счетчика времени дыхательной сессии
+    private func stopElapsedTimer() {
+        elapsedTimer?.invalidate()
+        elapsedTimer = nil
     }
     
     
@@ -368,13 +396,13 @@ struct BreathAnimation: View {
         Timer.scheduledTimer(withTimeInterval: inhaleTime + pauseTimeVdoh, repeats: false) { _ in
             
             ghostSize = GlobalBreathSettings.ghostMaxSize
-            ghostBlur = 0
+            ghostBlur = 0.5
             ghostOpacity = 0.8
            // Таймер для настройки анимации "призраков"
-            Timer.scheduledTimer(withTimeInterval: exhaleTime * 0.3, repeats: false) { _ in
-                withAnimation(.easeOut(duration: exhaleTime * 0.5)) {
-                    ghostBlur = 30
-                    ghostOpacity = 0
+            Timer.scheduledTimer(withTimeInterval: exhaleTime * 0.2, repeats: false) { _ in
+                withAnimation(.easeOut(duration: exhaleTime * 0.3)) {
+                    ghostBlur = 15
+                    ghostOpacity = 0.2
                 }
             }
             
@@ -398,10 +426,10 @@ struct BreathAnimation: View {
     
 }
 
-//// Предварительный просмотр анимации дыхания
-//struct BreathAnimation_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BreathAnimation(isShowingBreath: $isShowingBreath)
-//    }
-//}
+// Предварительный просмотр анимации дыхания
+struct BreathAnimation_Previews: PreviewProvider {
+    static var previews: some View {
+ Carusel()
+    }
+}
 
