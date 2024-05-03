@@ -10,16 +10,9 @@ class Store: ObservableObject {
     @Published var items: [Item] = [Item(id: 0, title: "0", opisanie: "Настроить свой ритм"),
                                     Item(id: 1, title: "1", opisanie: ""),
                                     Item(id: 2, title: "2", opisanie: ""),
-                                    Item(id: 3, title: "3", opisanie: "")]
+                                    Item(id: 3, title: "3", opisanie: "Практика Вима Хофа")]
     
    
     
-//    // dummy data
-//    init() {
-//        items = []
-//        for i in 0...3 {
-//            let new = Item(id: i, title: "\(i)")
-//            items.append(new)
-//        }
-//    }
+
 }

@@ -34,10 +34,8 @@
 		2DD47F602BD91B0C00825EFE /* tick_metronome_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F5F2BD91B0C00825EFE /* tick_metronome_low.mp3 */; };
 		2DD47F622BD91D6E00825EFE /* MetronomePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */; };
 		2DD47F642BD938EF00825EFE /* BreathAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */; };
-		2DF1817D2BE366D50004E929 /* breathing_1_sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF181792BE366D50004E929 /* breathing_1_sec.mp3 */; };
-		2DF1817E2BE366D50004E929 /* breathing_2_sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF1817A2BE366D50004E929 /* breathing_2_sec.mp3 */; };
-		2DF1817F2BE366D50004E929 /* breathing_3_sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF1817B2BE366D50004E929 /* breathing_3_sec.mp3 */; };
-		2DF181802BE366D50004E929 /* breathing_4_sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF1817C2BE366D50004E929 /* breathing_4_sec.mp3 */; };
+		2DF181822BE3D50B0004E929 /* BreathVimHof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF181812BE3D50B0004E929 /* BreathVimHof.swift */; };
+		2DF181842BE4B9A30004E929 /* breathing-4sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF181832BE4B9A30004E929 /* breathing-4sec.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,10 +67,8 @@
 		2DD47F5F2BD91B0C00825EFE /* tick_metronome_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tick_metronome_low.mp3; sourceTree = "<group>"; };
 		2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomePlayer.swift; sourceTree = "<group>"; };
 		2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathAnimationView.swift; sourceTree = "<group>"; };
-		2DF181792BE366D50004E929 /* breathing_1_sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breathing_1_sec.mp3; sourceTree = "<group>"; };
-		2DF1817A2BE366D50004E929 /* breathing_2_sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breathing_2_sec.mp3; sourceTree = "<group>"; };
-		2DF1817B2BE366D50004E929 /* breathing_3_sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breathing_3_sec.mp3; sourceTree = "<group>"; };
-		2DF1817C2BE366D50004E929 /* breathing_4_sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breathing_4_sec.mp3; sourceTree = "<group>"; };
+		2DF181812BE3D50B0004E929 /* BreathVimHof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathVimHof.swift; sourceTree = "<group>"; };
+		2DF181832BE4B9A30004E929 /* breathing-4sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "breathing-4sec.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +117,7 @@
 				2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */,
 				2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */,
 				2D00FAFA2BDF6ABB00A7BB7E /* AlertView.swift */,
+				2DF181812BE3D50B0004E929 /* BreathVimHof.swift */,
 			);
 			path = "Pranayama and meditation";
 			sourceTree = "<group>";
@@ -178,10 +175,7 @@
 				2DD47F5F2BD91B0C00825EFE /* tick_metronome_low.mp3 */,
 				2DD47F5D2BD91ACD00825EFE /* tick_metronome_high.mp3 */,
 				2DD47F4D2BD8CDF900825EFE /* inhale.mp3 */,
-				2DF181792BE366D50004E929 /* breathing_1_sec.mp3 */,
-				2DF1817A2BE366D50004E929 /* breathing_2_sec.mp3 */,
-				2DF1817B2BE366D50004E929 /* breathing_3_sec.mp3 */,
-				2DF1817C2BE366D50004E929 /* breathing_4_sec.mp3 */,
+				2DF181832BE4B9A30004E929 /* breathing-4sec.mp3 */,
 				2DD47F4B2BD8CDEA00825EFE /* hold.mp3 */,
 				2DD47F492BD8CDE200825EFE /* exhale.mp3 */,
 			);
@@ -247,16 +241,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DD47F4A2BD8CDE200825EFE /* exhale.mp3 in Resources */,
-				2DF181802BE366D50004E929 /* breathing_4_sec.mp3 in Resources */,
 				2DD47F4C2BD8CDEA00825EFE /* hold.mp3 in Resources */,
-				2DF1817E2BE366D50004E929 /* breathing_2_sec.mp3 in Resources */,
 				2DD47F602BD91B0C00825EFE /* tick_metronome_low.mp3 in Resources */,
 				2DD47F5E2BD91ACD00825EFE /* tick_metronome_high.mp3 in Resources */,
-				2DF1817F2BE366D50004E929 /* breathing_3_sec.mp3 in Resources */,
+				2DF181842BE4B9A30004E929 /* breathing-4sec.mp3 in Resources */,
 				2DD47F4E2BD8CDF900825EFE /* inhale.mp3 in Resources */,
 				2D0E83092BB6C39C0076B2CC /* Preview Assets.xcassets in Resources */,
 				2D0E83062BB6C39C0076B2CC /* Assets.xcassets in Resources */,
-				2DF1817D2BE366D50004E929 /* breathing_1_sec.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +262,7 @@
 				2DD47F642BD938EF00825EFE /* BreathAnimationView.swift in Sources */,
 				2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */,
 				2DD47F3B2BD4F39700825EFE /* GlobalBreathSettings.swift in Sources */,
+				2DF181822BE3D50B0004E929 /* BreathVimHof.swift in Sources */,
 				2D81CBF02BC6D53400471763 /* WheelPickerView.swift in Sources */,
 				2D00FAFB2BDF6ABB00A7BB7E /* AlertView.swift in Sources */,
 				2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */,

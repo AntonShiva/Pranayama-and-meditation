@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct Carusel: View {
-   
+   // Флаг для своего дыхательного ритма
     @State private var isShowingBreath = false
+    // Флаг для дыхательрной практики Вима Хофа
+    @State private var isShowingBreathVimHof = false
     
     @StateObject var store = Store()
     @State private var snappedItem = 0.0
@@ -47,9 +49,9 @@ struct Carusel: View {
                 }
                 
             }
-            .onTapGesture {
-                isShowing = true
-            }
+//            .onTapGesture {
+//                isShowing = true
+//            }
             .sheet(isPresented: $isShowing) {
                 VStack {
                     
@@ -76,6 +78,11 @@ struct Carusel: View {
                 BreathAnimation(isShowingBreath: $isShowingBreath)
                     .ignoresSafeArea()
             }
+            .fullScreenCover(isPresented: $isShowingBreathVimHof) {
+               BreathVimHof()
+                    .ignoresSafeArea()
+            }
+            
             
 //            .fullScreenCover(isPresented: $isShowingBreath) {
 //                BreatheView()
@@ -102,15 +109,14 @@ struct Carusel: View {
             )
             
             
-            
+          // Точечный индикатро прокрути
             CustomIndicator()
                 .padding(.top, 15.0)
             
-            if activeIndex == 0 {
+            // Отображение настройки своего ритма дыхания если отображается 3 индекс массива карусели
+            if activeIndex == 3 {
                 VStack{
-                   
-                
-                    Text("\(store.items[0].opisanie)")
+                  Text("\(store.items[0].opisanie)")
                         .foregroundStyle(.cyan)
                         .font(.system(size: 25))
                     
@@ -168,6 +174,87 @@ struct Carusel: View {
                 .padding(.top, 5.0)
                     
             }
+            
+            // Отображение настройки своего ритма дыхания если отображается первый индекс массива карусели
+            if activeIndex == 0 {
+                VStack{
+                  Text("\(store.items[3].opisanie)")
+                        .foregroundStyle(.cyan)
+                        .font(.system(size: 25))
+                    
+                    Spacer()
+                    HStack{
+                       
+                        ZStack {
+                            Circle()
+                                .stroke(style: .init(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
+                                .frame(width: 70, height: 70)
+                            
+                            
+                            
+                            Text("30")
+                                .foregroundColor(.cyan)
+                                .font(.system(size: 35))
+                        }
+                        .foregroundColor(.cyan)
+                        
+
+                        
+                    }
+                    
+                   Text("циклов")
+                        .foregroundStyle(.cyan)
+                        .font(.system(size: 20))
+                
+                    Spacer()
+                
+                
+                HStack{
+                    Spacer()
+                    Button {
+                         withAnimation {
+                             isShowing = true
+                         }
+                    } label: {
+                        Text("Настроить")
+                            .foregroundStyle(.cyan)
+                            .font(.system(size: 17))
+                    }
+                    .frame(width: 120.0, height: 40)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.cyan, lineWidth: 2)
+                    )
+                    
+                    Spacer()
+                    
+                    Button {
+                        withAnimation {
+                            isShowingBreathVimHof = true
+                        }
+                    } label: {
+                        Text("Старт")
+                            .foregroundStyle(.cyan)
+                            .font(.system(size: 17))
+                    }
+                    .frame(width: 120.0, height: 40)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.cyan, lineWidth: 2)
+                    )
+                    
+                    Spacer()
+                    
+                }
+                .padding(.vertical, 15.0)
+                    
+                    Spacer()
+
+                }
+                .padding(.top, 5.0)
+                    
+            }
+            
         }
     }
     

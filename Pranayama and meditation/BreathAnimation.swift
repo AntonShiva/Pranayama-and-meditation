@@ -34,7 +34,7 @@ struct BreathAnimation: View {
     
     @State var startPausLabel = "Старт"
     
-    @State private var isPaused = false
+//    @State private var isPaused = false
     
     @State private var timerLabel = "" // Начальное значение для текстовой метки
     // Счетчик для отображения текущего этапа дыхания
@@ -46,8 +46,6 @@ struct BreathAnimation: View {
     @State var timeRemaining: Int = 1
     
     @State var timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-    
-    
     @State var isTimerRunning = false
    
     @State var cycle = 0 // Добавляем переменную для хранения текущего цикла
@@ -99,6 +97,7 @@ struct BreathAnimation: View {
                             .font(.title2)
                             .foregroundColor(.cyan)
                     }
+                    // Отображение длительности по времени дыхательной сессии 
                     Text(elapsedMinutes == 0 ? "\(elapsedSeconds) " : "\(elapsedMinutes):\(String(format: "%02d", elapsedSeconds))")
                         .font(.title2)
                         .foregroundColor(.cyan)
@@ -384,7 +383,7 @@ struct BreathAnimation: View {
     // Функция для выполнения анимаций
     private func performAnimations() {
         guard showBreatheView else { return } // Проверяем условие для запуска анимации
-        guard showBreatheView && !isPaused else { return }
+//        guard showBreatheView && !isPaused else { return }
         
         // Анимация вдоха
         withAnimation(.easeInOut(duration: inhaleTime)) {
