@@ -36,6 +36,7 @@
 		2DD47F642BD938EF00825EFE /* BreathAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */; };
 		2DF181822BE3D50B0004E929 /* BreathVimHof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF181812BE3D50B0004E929 /* BreathVimHof.swift */; };
 		2DF181842BE4B9A30004E929 /* breathing-4sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF181832BE4B9A30004E929 /* breathing-4sec.mp3 */; };
+		2DF181862BE51CE20004E929 /* AlertViewVimHof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF181852BE51CE20004E929 /* AlertViewVimHof.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathAnimationView.swift; sourceTree = "<group>"; };
 		2DF181812BE3D50B0004E929 /* BreathVimHof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathVimHof.swift; sourceTree = "<group>"; };
 		2DF181832BE4B9A30004E929 /* breathing-4sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "breathing-4sec.mp3"; sourceTree = "<group>"; };
+		2DF181852BE51CE20004E929 /* AlertViewVimHof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewVimHof.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */,
 				2D00FAFA2BDF6ABB00A7BB7E /* AlertView.swift */,
 				2DF181812BE3D50B0004E929 /* BreathVimHof.swift */,
+				2DF181852BE51CE20004E929 /* AlertViewVimHof.swift */,
 			);
 			path = "Pranayama and meditation";
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */,
 				2D81CBEA2BC2ADB300471763 /* BreathingCycleSettingView.swift in Sources */,
 				2D81CBE02BC1D22600471763 /* Store.swift in Sources */,
+				2DF181862BE51CE20004E929 /* AlertViewVimHof.swift in Sources */,
 				2D81CBF82BC8FC8500471763 /* IndicatorButtonView.swift in Sources */,
 				2D81CBD82BC0364F00471763 /* Carusel.swift in Sources */,
 				2D81CBDE2BC1D1E500471763 /* Item.swift in Sources */,

@@ -79,7 +79,7 @@ struct Carusel: View {
                     .ignoresSafeArea()
             }
             .fullScreenCover(isPresented: $isShowingBreathVimHof) {
-               BreathVimHof()
+                BreathVimHof(isShowingBreathVimHof: $isShowingBreathVimHof)
                     .ignoresSafeArea()
             }
             
