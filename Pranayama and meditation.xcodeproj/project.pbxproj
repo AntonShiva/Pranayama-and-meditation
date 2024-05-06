@@ -25,6 +25,7 @@
 		2D81CBF02BC6D53400471763 /* WheelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBEF2BC6D53400471763 /* WheelPickerView.swift */; };
 		2D81CBF82BC8FC8500471763 /* IndicatorButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBF72BC8FC8500471763 /* IndicatorButtonView.swift */; };
 		2D81CBFA2BC979F300471763 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81CBF92BC979F300471763 /* Extension.swift */; };
+		2D9AAC1B2BE946A0005C1989 /* NastroikiVimHof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AAC1A2BE946A0005C1989 /* NastroikiVimHof.swift */; };
 		2DD47F3B2BD4F39700825EFE /* GlobalBreathSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F3A2BD4F39700825EFE /* GlobalBreathSettings.swift */; };
 		2DD47F3D2BD4F3FD00825EFE /* Petals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD47F3C2BD4F3FD00825EFE /* Petals.swift */; };
 		2DD47F4A2BD8CDE200825EFE /* exhale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD47F492BD8CDE200825EFE /* exhale.mp3 */; };
@@ -59,6 +60,7 @@
 		2D81CBEF2BC6D53400471763 /* WheelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPickerView.swift; sourceTree = "<group>"; };
 		2D81CBF72BC8FC8500471763 /* IndicatorButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorButtonView.swift; sourceTree = "<group>"; };
 		2D81CBF92BC979F300471763 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		2D9AAC1A2BE946A0005C1989 /* NastroikiVimHof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NastroikiVimHof.swift; sourceTree = "<group>"; };
 		2DD47F3A2BD4F39700825EFE /* GlobalBreathSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBreathSettings.swift; sourceTree = "<group>"; };
 		2DD47F3C2BD4F3FD00825EFE /* Petals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petals.swift; sourceTree = "<group>"; };
 		2DD47F492BD8CDE200825EFE /* exhale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = exhale.mp3; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				2D00FAFA2BDF6ABB00A7BB7E /* AlertView.swift */,
 				2DF181812BE3D50B0004E929 /* BreathVimHof.swift */,
 				2DF181852BE51CE20004E929 /* AlertViewVimHof.swift */,
+				2D9AAC1A2BE946A0005C1989 /* NastroikiVimHof.swift */,
 			);
 			path = "Pranayama and meditation";
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				2D0E83122BB6FDF00076B2CC /* TabModel.swift in Sources */,
 				2DD47F3B2BD4F39700825EFE /* GlobalBreathSettings.swift in Sources */,
 				2DF181822BE3D50B0004E929 /* BreathVimHof.swift in Sources */,
+				2D9AAC1B2BE946A0005C1989 /* NastroikiVimHof.swift in Sources */,
 				2D81CBF02BC6D53400471763 /* WheelPickerView.swift in Sources */,
 				2D00FAFB2BDF6ABB00A7BB7E /* AlertView.swift in Sources */,
 				2D0E83042BB6C39A0076B2CC /* ContentView.swift in Sources */,
