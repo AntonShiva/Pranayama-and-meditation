@@ -20,8 +20,14 @@ struct Carusel: View {
  
     
     @AppStorage("selected")  var selectedValues  = [5, 0, 5, 0]
+    
+    // флаг для появление настроек дыхания
     @AppStorage("isShowing") var isShowing = false
-
+    // флаг для появления настроек дыхания вима хофа
+    @AppStorage("isShowingVimHof") var isShowingVimHof = false
+    
+    //Данные настроек дыхания
+    @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,5,30,30]
     
     var body: some View {
         VStack {
@@ -54,17 +60,12 @@ struct Carusel: View {
 //            }
             .sheet(isPresented: $isShowing) {
                 VStack {
-                    
-                  
-                    
-                    Text("\(store.items[0].opisanie)")
+                  Text("\(store.items[0].opisanie)")
                         .padding(.top, 40.0)
                         .foregroundStyle(.cyan)
                         .font(.system(size: 25))
                     
-                   
-                    
-                    BreathingCycleSettingView(isShowing: $isShowing, selectedValues: $selectedValues)
+                   BreathingCycleSettingView(isShowing: $isShowing, selectedValues: $selectedValues)
                         .padding(.top, 40.0)
                     
                     Spacer()
@@ -73,6 +74,11 @@ struct Carusel: View {
                 
                 .presentationDetents([.large])
             }
+            
+            .sheet(isPresented: $isShowingVimHof ) {
+                NastroikiVimHof()
+            }
+            
             .fullScreenCover(isPresented: $isShowingBreath) {
               
                 BreathAnimation(isShowingBreath: $isShowingBreath)
@@ -190,15 +196,11 @@ struct Carusel: View {
                                 .stroke(style: .init(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
                                 .frame(width: 70, height: 70)
                             
-                            
-                            
-                            Text("30")
+                           Text("\(selectedValuesVimHof[0])")
                                 .foregroundColor(.cyan)
                                 .font(.system(size: 35))
                         }
                         .foregroundColor(.cyan)
-                        
-
                         
                     }
                     
@@ -213,7 +215,7 @@ struct Carusel: View {
                     Spacer()
                     Button {
                          withAnimation {
-                             isShowing = true
+                             isShowingVimHof = true
                          }
                     } label: {
                         Text("Настроить")

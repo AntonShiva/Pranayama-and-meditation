@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct BreathVimHof: View {
-    
-    
+    //Данные настроек дыхания
+    @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,5,30,30]
     
     // Время для вдоха, выдоха и паузы
     @State private var inhaleTime: Double = 2.2

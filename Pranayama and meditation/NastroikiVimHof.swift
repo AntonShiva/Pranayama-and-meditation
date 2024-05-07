@@ -13,17 +13,15 @@ struct NastroikiVimHof: View {
     
     @State private var isShowing: Bool = true
     
-    @State private var indexBasics  = [29, 4, 29, 29]
-    @State private var selectedValues: [Int] = [30,5,30,30]
-    
-//    @Binding var dailyRate: [Int]
+    @AppStorage("indexVimHof") var indexBasics  = [29, 4, 29, 29]
+    @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,5,30,30]
     
     var body: some View {
         VStack {
-            WheelPickerView(selectedIndex: $indexBasics[0], values: self.vdohVidoh, selectedValue: $selectedValues[0], text: "Колличество вдохов - выдохов \(self.selectedValues[0]) ")
-            WheelPickerView(selectedIndex: self.$indexBasics[1], values: self.vdohVidoh, selectedValue: self.$selectedValues[1], text: "Темп дыхания \(self.selectedValues[1]) сек.")
-            WheelPickerView(selectedIndex: self.$indexBasics[2], values: self.vdohVidoh, selectedValue: self.$selectedValues[2], text: "Задержка на выдохе \(self.selectedValues[2]) сек.")
-            WheelPickerView(selectedIndex: self.$indexBasics[3], values: self.vdohVidoh, selectedValue: self.$selectedValues[3], text: "Задержка на вдохе \(self.selectedValues[3]) сек.")
+            WheelPickerView(selectedIndex: $indexBasics[0], values: self.vdohVidoh, selectedValue: $selectedValuesVimHof[0], text: "Колличество вдохов - выдохов \(self.selectedValuesVimHof[0]) ")
+            WheelPickerView(selectedIndex: self.$indexBasics[1], values: self.vdohVidoh, selectedValue: self.$selectedValuesVimHof[1], text: "Темп дыхания \(self.selectedValuesVimHof[1]) сек.")
+            WheelPickerView(selectedIndex: self.$indexBasics[2], values: self.vdohVidoh, selectedValue: self.$selectedValuesVimHof[2], text: "Задержка на выдохе \(self.selectedValuesVimHof[2]) сек.")
+            WheelPickerView(selectedIndex: self.$indexBasics[3], values: self.vdohVidoh, selectedValue: self.$selectedValuesVimHof[3], text: "Задержка на вдохе \(self.selectedValuesVimHof[3]) сек.")
             Button {
                 withAnimation {
                     isShowing.toggle()
