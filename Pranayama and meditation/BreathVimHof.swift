@@ -11,6 +11,24 @@ struct BreathVimHof: View {
     //Данные настроек дыхания
     @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,5,30,30]
     
+    // Задержки на вдохе и выдохе
+    @State private var exhaleDelay: Double = 0
+    @State private var inhaleDelay: Double = 0
+    // Таймер для задержки на выдохе
+    @State var exhaleDelayTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    //Тайар для задержки на вдохе
+    @State var inhaleDelayTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    // Вычисляет начало первой паузы задержки на выдохе
+    var pauza: Double {
+      let pauza = Double(selectedValuesVimHof[0]) * 4.4 + 4
+        return pauza
+    }
+    // Отображение времни таймкра задержки на выдохе
+    @State var timeExhaleDelayTimer: Int = 1
+    // Флаг для отображения пауз в конце
+    @State var timeExhaleDelayTimerStart = false
+    
+    
     // Время для вдоха, выдоха и паузы
     @State private var inhaleTime: Double = 2.2
     @State private  var  exhaleTime: Double = 2.2
@@ -102,6 +120,12 @@ struct BreathVimHof: View {
             }
             
         })
+        .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + pauza) {
+                timeExhaleDelayTimerStart = true
+            }
+        })
+            
         // отображение таймера с логикой
         .overlay(content: {
             ZStack{
@@ -124,9 +148,6 @@ struct BreathVimHof: View {
                                 
                                 metronomePlayer.stopSound()
                                 stopAnimations()
-                                
-                                
-                                
                             }
                             
                             if timeRemaining == numberOfBreathsExhaled {
@@ -143,6 +164,26 @@ struct BreathVimHof: View {
                         Image(systemName: "atom")
                             .font(.system(size: 36))
                             .foregroundColor(.white)
+                        
+                        // Запуск таймера задержка на выдохе
+                        if timeExhaleDelayTimerStart {
+                            Text("\(timeExhaleDelayTimer)")
+                                .onReceive(exhaleDelayTimer) { _ in
+                                    if timeExhaleDelayTimer < selectedValuesVimHof[2] {
+                                        timeExhaleDelayTimer += 1
+                                    } else {
+                                        self.exhaleDelayTimer.upstream.connect().cancel()
+                                        timeExhaleDelayTimer = 1
+                                        timeExhaleDelayTimerStart = false
+                                    }
+                                }
+                                .fontWeight(.heavy)
+                                .font(.system(size: 36))
+                                .foregroundColor(Color(hex: 0x05C3F0))
+                        }
+                        
+                        
+                        
                         // Табло старт
                         if start{
                             Text("\(startTimerCount)")
@@ -208,6 +249,9 @@ struct BreathVimHof: View {
         .padding(.trailing, 5.0)
         .frame(width: 130)
     }
+        .onAppear(perform: {
+            numberOfBreathsExhaled = selectedValuesVimHof[0]
+        })
         .id(refreshView) // Добавление .id для перезагрузки представления
     }
     
