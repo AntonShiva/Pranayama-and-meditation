@@ -27,6 +27,13 @@ struct BreathVimHof: View {
     @State var timeExhaleDelayTimer: Int = 1
     // Флаг для отображения пауз в конце
     @State var timeExhaleDelayTimerStart = false
+    // Отображение времни таймкра задержки на выдохе
+    @State var timeInhaleDelayTimer: Int = 1
+    // Флаг для отображения пауз в конце
+    @State var timeInhaleDelayTimerStart = false
+    
+    
+    
     
     
     // Время для вдоха, выдоха и паузы
@@ -174,6 +181,7 @@ struct BreathVimHof: View {
                                     } else {
                                         self.exhaleDelayTimer.upstream.connect().cancel()
                                         timeExhaleDelayTimer = 1
+                                        timeInhaleDelayTimerStart = true
                                         timeExhaleDelayTimerStart = false
                                     }
                                 }
@@ -181,6 +189,24 @@ struct BreathVimHof: View {
                                 .font(.system(size: 36))
                                 .foregroundColor(Color(hex: 0x05C3F0))
                         }
+                        
+                        // Запуск таймера задержка на вдохе
+                        if timeInhaleDelayTimerStart {
+                            Text("\(timeInhaleDelayTimer)")
+                                .onReceive(inhaleDelayTimer) { _ in
+                                    if timeInhaleDelayTimer < selectedValuesVimHof[3] {
+                                        timeInhaleDelayTimer += 1
+                                    } else {
+                                        self.inhaleDelayTimer.upstream.connect().cancel()
+                                        timeInhaleDelayTimer = 1
+                                        timeInhaleDelayTimerStart = false
+                                    }
+                                }
+                                .fontWeight(.heavy)
+                                .font(.system(size: 36))
+                                .foregroundColor(Color(hex: 0x05C3F0))
+                        }
+                        
                         
                         
                         
