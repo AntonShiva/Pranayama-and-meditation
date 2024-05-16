@@ -128,8 +128,15 @@ struct BreathVimHof: View {
             
         })
         .onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + pauza) {
-                timeExhaleDelayTimerStart = true
+            if selectedValuesVimHof[2] > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + pauza) {
+                    timeExhaleDelayTimerStart = true
+                }
+            }
+            if selectedValuesVimHof[3] > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + pauza + Double(selectedValuesVimHof[2])) {
+                    timeInhaleDelayTimerStart = true
+                }
             }
         })
             
@@ -181,7 +188,7 @@ struct BreathVimHof: View {
                                     } else {
                                         self.exhaleDelayTimer.upstream.connect().cancel()
                                         timeExhaleDelayTimer = 1
-                                        timeInhaleDelayTimerStart = true
+                                        
                                         timeExhaleDelayTimerStart = false
                                     }
                                 }
