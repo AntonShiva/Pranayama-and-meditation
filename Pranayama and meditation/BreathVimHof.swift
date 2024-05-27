@@ -37,12 +37,12 @@ struct BreathVimHof: View {
     
     var dlinaVdohf: Double {
         switch selectedValuesVimHof[1] {
-        case 2 : 1.8
-        case 3 : 1.9
-        case 4 : 2.2
-        case 5 : 2.2
+        case 2 : 2.2
+        case 3 : 3.4
+        case 4 : 4.4
+        case 5 : 5.2
         default:
-            2.2
+            4.4
         }
     }
     
@@ -132,7 +132,7 @@ struct BreathVimHof: View {
                     isTimerRunning = true
                     // Проигрываем звуковой эффект на каждый счет
                     metronomePlayer.playSound(sound: "breathing-\(selectedValuesVimHof[1])sec", type: "mp3")
-                    timer = Timer.publish(every: 2.2, on: .main, in: .common).autoconnect()
+                    timer = Timer.publish(every: dlinaVdohf, on: .main, in: .common).autoconnect()
                     
                 }
             }
@@ -295,8 +295,8 @@ struct BreathVimHof: View {
     }
         .onAppear(perform: {
             numberOfBreathsExhaled = selectedValuesVimHof[0]
-            inhaleTime = dlinaVdohf
-            exhaleTime = dlinaVdohf
+            inhaleTime = dlinaVdohf / 2
+            exhaleTime = dlinaVdohf / 2
         })
         .id(refreshView) // Добавление .id для перезагрузки представления
     }
