@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+
 struct BreathVimHof: View {
     //Данные настроек дыхания
     @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,5,30,30]
@@ -33,7 +35,16 @@ struct BreathVimHof: View {
     @State var timeInhaleDelayTimerStart = false
     
     
-    
+    var dlinaVdohf: Double {
+        switch selectedValuesVimHof[1] {
+        case 2 : 1.8
+        case 3 : 1.9
+        case 4 : 2.2
+        case 5 : 2.2
+        default:
+            2.2
+        }
+    }
     
     
     // Время для вдоха, выдоха и паузы
@@ -120,8 +131,8 @@ struct BreathVimHof: View {
                     
                     isTimerRunning = true
                     // Проигрываем звуковой эффект на каждый счет
-                    metronomePlayer.playSound(sound: "breathing-4sec", type: "mp3")
-                    timer = Timer.publish(every: 4.4, on: .main, in: .common).autoconnect()
+                    metronomePlayer.playSound(sound: "breathing-\(selectedValuesVimHof[1])sec", type: "mp3")
+                    timer = Timer.publish(every: 2.2, on: .main, in: .common).autoconnect()
                     
                 }
             }
@@ -154,7 +165,7 @@ struct BreathVimHof: View {
                         .onReceive(timer) { _ in
                             if timeRemaining < numberOfBreathsExhaled {
                                 // Проигрываем звуковой эффект на каждый счет
-                                metronomePlayer.playSound(sound: "breathing-4sec", type: "mp3")
+                                metronomePlayer.playSound(sound: "breathing-\(selectedValuesVimHof[1])sec", type: "mp3")
                             }
                             timeRemaining += 1
                             
@@ -284,6 +295,8 @@ struct BreathVimHof: View {
     }
         .onAppear(perform: {
             numberOfBreathsExhaled = selectedValuesVimHof[0]
+            inhaleTime = dlinaVdohf
+            exhaleTime = dlinaVdohf
         })
         .id(refreshView) // Добавление .id для перезагрузки представления
     }

@@ -13,6 +13,6 @@ class Store: ObservableObject {
                                     Item(id: 3, title: "3", opisanie: "Практика Вима Хофа")]
     
    
-    
+  
 
 }
