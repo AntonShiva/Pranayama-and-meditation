@@ -34,15 +34,14 @@ struct BreathVimHof: View {
     // Флаг для отображения пауз в конце
     @State var timeInhaleDelayTimerStart = false
     
-    
+    // Вдох-Выдох вычисляемое свойство для регулировки времени таймера длинны дыхательного цикла и анимации
     var dlinaVdohf: Double {
         switch selectedValuesVimHof[1] {
         case 2 : 2.2
         case 3 : 3.4
         case 4 : 4.4
         case 5 : 5.2
-        default:
-            4.4
+        default: 4.4
         }
     }
     
