@@ -45,11 +45,11 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
     var color: Color {
         switch self {
         case .home:
-            return .blue
+            return .cyan
         case .game:
             return .cyan
         case .apps:
-            return .indigo
+            return .cyan
         case .movie:
             return .cyan
         }

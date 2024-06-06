@@ -11,9 +11,10 @@ struct TabBarView: View {
     let bgColor: Color = .init(white: 0.9)
     
     var body: some View {
+        
         ZStack {
-            backgroundView
-            
+//            backgroundView
+         
             TabsLayoutView()
                 .frame(height: 65, alignment: .center)
                 .clipped()
@@ -22,15 +23,15 @@ struct TabBarView: View {
         .padding(.horizontal, 25)
     }
     
-    @ViewBuilder private var backgroundView: some View {
-        LinearGradient(colors: [.init(white: 0.9), .white], startPoint: .top, endPoint: .bottom)
-            .mask {
-                RoundedRectangle(cornerRadius: 25, style: .continuous)
-                    .stroke(lineWidth: 6)
-            }
-            .shadow(color: .black.opacity(0.5), radius: 5, x: 0, y: 8)
-            .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-    }
+//    @ViewBuilder private var backgroundView: some View {
+//        LinearGradient(colors: [.init(white: 0.9), .white], startPoint: .top, endPoint: .bottom)
+//            .mask {
+//                RoundedRectangle(cornerRadius: 25, style: .continuous)
+//                    .stroke(lineWidth: 6)
+//            }
+//            .shadow(color: .black.opacity(0.5), radius: 5, x: 0, y: 8)
+//            .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+//    }
 }
 
 fileprivate struct TabsLayoutView: View {

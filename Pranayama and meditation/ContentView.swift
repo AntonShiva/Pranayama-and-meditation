@@ -20,9 +20,9 @@ struct ContentView: View {
                  
                  
                 Spacer()
-                
+                Divider()
                 TabBarView()
-             
+                    .frame(height: 60)
             }
             .padding(.horizontal)
         }

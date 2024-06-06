@@ -113,9 +113,9 @@
 		2D0E83002BB6C39A0076B2CC /* Pranayama and meditation */ = {
 			isa = PBXGroup;
 			children = (
-				2DD47F462BD8CD9800825EFE /* Audio */,
 				2D0E83012BB6C39A0076B2CC /* Pranayama_and_meditationApp.swift */,
 				2D0E83032BB6C39A0076B2CC /* ContentView.swift */,
+				2DD47F462BD8CD9800825EFE /* Audio */,
 				2D81CBF42BC8218000471763 /* View */,
 				2D81CBF22BC820EE00471763 /* Carusel */,
 				2D81CBF12BC820CC00471763 /* TabBar */,
@@ -123,12 +123,10 @@
 				2D81CBF92BC979F300471763 /* Extension.swift */,
 				2D0E83052BB6C39C0076B2CC /* Assets.xcassets */,
 				2D0E83072BB6C39C0076B2CC /* Preview Content */,
-				2D76C9822BD2A69000B51962 /* BreathAnimation.swift */,
+				2D3CFDD02C120AB9006C2E38 /* SvoiRitm */,
+				2D3CFDD12C120B14006C2E38 /* Plaier */,
 				2DD47F3A2BD4F39700825EFE /* GlobalBreathSettings.swift */,
 				2DD47F3C2BD4F3FD00825EFE /* Petals.swift */,
-				2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */,
-				2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */,
-				2D00FAFA2BDF6ABB00A7BB7E /* AlertView.swift */,
 				2DF181812BE3D50B0004E929 /* BreathVimHof.swift */,
 				2DF181852BE51CE20004E929 /* AlertViewVimHof.swift */,
 				2D9AAC1A2BE946A0005C1989 /* NastroikiVimHof.swift */,
@@ -142,6 +140,24 @@
 				2D0E83082BB6C39C0076B2CC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2D3CFDD02C120AB9006C2E38 /* SvoiRitm */ = {
+			isa = PBXGroup;
+			children = (
+				2D76C9822BD2A69000B51962 /* BreathAnimation.swift */,
+				2DD47F632BD938EF00825EFE /* BreathAnimationView.swift */,
+				2D00FAFA2BDF6ABB00A7BB7E /* AlertView.swift */,
+			);
+			path = SvoiRitm;
+			sourceTree = "<group>";
+		};
+		2D3CFDD12C120B14006C2E38 /* Plaier */ = {
+			isa = PBXGroup;
+			children = (
+				2DD47F612BD91D6E00825EFE /* MetronomePlayer.swift */,
+			);
+			path = Plaier;
 			sourceTree = "<group>";
 		};
 		2D81CBF12BC820CC00471763 /* TabBar */ = {

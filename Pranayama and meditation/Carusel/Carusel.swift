@@ -151,6 +151,7 @@ struct Carusel: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.cyan, lineWidth: 2)
                     )
+                 
                     
                     Spacer()
                     
@@ -227,6 +228,7 @@ struct Carusel: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.cyan, lineWidth: 2)
                     )
+                 
                     
                     Spacer()
                     
