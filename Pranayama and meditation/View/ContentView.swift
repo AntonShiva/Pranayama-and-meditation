@@ -15,16 +15,10 @@ struct ContentView: View {
             backgroundColor
                 .ignoresSafeArea()
             VStack() {
-                Carusel()
-                    .padding(.top, 50)
-                 
-                 
-                Spacer()
-                Divider()
-                TabBarView()
-                    .frame(height: 60)
+     HomeVeiw()
+                   
             }
-            .padding(.horizontal)
+            
         }
     }
 }

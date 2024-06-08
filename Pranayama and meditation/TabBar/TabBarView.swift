@@ -9,44 +9,36 @@ import SwiftUI
 
 struct TabBarView: View {
     let bgColor: Color = .init(white: 0.9)
+    @Binding var selectedTab: Tab
     
     var body: some View {
-        
-        ZStack {
-//            backgroundView
-         
-            TabsLayoutView()
+   
+                ZStack {
+ 
+                    TabsLayoutView(selectedTab: $selectedTab)
+                        .frame(height: 65, alignment: .center)
+                        .clipped()
+                }
                 .frame(height: 65, alignment: .center)
-                .clipped()
-        }
-        .frame(height: 66, alignment: .center)
-        .padding(.horizontal, 25)
-    }
-    
-//    @ViewBuilder private var backgroundView: some View {
-//        LinearGradient(colors: [.init(white: 0.9), .white], startPoint: .top, endPoint: .bottom)
-//            .mask {
-//                RoundedRectangle(cornerRadius: 25, style: .continuous)
-//                    .stroke(lineWidth: 6)
-//            }
-//            .shadow(color: .black.opacity(0.5), radius: 5, x: 0, y: 8)
-//            .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-//    }
+                .padding(.horizontal, 25)
+   }
+  
 }
 
 fileprivate struct TabsLayoutView: View {
-    @State var selectedTab: Tab = .home
+    @Binding var selectedTab: Tab
     @Namespace var namespace
     
     var body: some View {
+    
         HStack {
-            Spacer(minLength: 0)
+            Spacer()
             
             ForEach(Tab.allCases) { tab in
                 TabButton(tab: tab, selectedTab: $selectedTab, namespace: namespace)
                     .frame(width: 55, height: 40, alignment: .center)
                 
-                Spacer(minLength: 0)
+                Spacer()
             }
         }
     }
@@ -72,8 +64,8 @@ fileprivate struct TabsLayoutView: View {
                                 LinearGradient(colors: [.white.opacity(0.0001), tab.color.opacity(0.8)], startPoint: .topLeading, endPoint: .bottomTrailing)
                                     .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                             })
-                            .shadow(color: .white, radius: 5, x: -7, y: -6)
-                            .shadow(color: tab.color.opacity(0.7), radius: 6, x: 6, y: 6)
+                            .shadow(color: .white, radius: 4, x: -2, y: -2)
+                            .shadow(color: tab.color.opacity(0.7), radius: 4, x: 4, y: 4)
                             .matchedGeometryEffect(id: "Selected Tab", in: namespace)
                     }
                     
@@ -92,8 +84,8 @@ fileprivate struct TabsLayoutView: View {
     }
 }
 
-struct TabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarView()
-    }
-}
+//struct TabBarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TabBarView()
+//    }
+//}

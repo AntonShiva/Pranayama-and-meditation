@@ -12,45 +12,45 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
         lhs.rawValue < rhs.rawValue
     }
     
-    case home, game, apps, movie
+    case svoiRejim, vimHof, yogaNidra, history
     
     internal var id: Int { rawValue }
     
     var icon: String {
         switch self {
-        case .home:
+        case .svoiRejim:
             return "house.fill"
-        case .game:
+        case .vimHof:
             return "calendar.badge.clock"
-        case .apps:
+        case .yogaNidra:
             return "info.square"
-        case .movie:
+        case .history:
             return "gear"
         }
     }
     
     var title: String {
         switch self {
-        case .home:
+        case .svoiRejim:
             return "Home"
-        case .game:
+        case .vimHof:
             return "Chart"
-        case .apps:
+        case .yogaNidra:
             return "Info"
-        case .movie:
+        case .history:
             return "Settings"
         }
     }
     
     var color: Color {
         switch self {
-        case .home:
+        case .svoiRejim:
             return .cyan
-        case .game:
+        case .vimHof:
             return .cyan
-        case .apps:
+        case .yogaNidra:
             return .cyan
-        case .movie:
+        case .history:
             return .cyan
         }
     }

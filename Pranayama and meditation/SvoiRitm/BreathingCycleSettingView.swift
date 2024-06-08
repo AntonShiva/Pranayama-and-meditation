@@ -46,7 +46,7 @@ struct BreathingCycleSettingView: View {
     }
 }
 
-#Preview {
-    Carusel()
-}
+//#Preview {
+//    Carusel()
+//}
 

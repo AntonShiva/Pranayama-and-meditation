@@ -425,10 +425,10 @@ struct BreathAnimation: View {
     
 }
 
-// Предварительный просмотр анимации дыхания
-struct BreathAnimation_Previews: PreviewProvider {
-    static var previews: some View {
- Carusel()
-    }
-}
+//// Предварительный просмотр анимации дыхания
+//struct BreathAnimation_Previews: PreviewProvider {
+//    static var previews: some View {
+// Carusel()
+//    }
+//}
 

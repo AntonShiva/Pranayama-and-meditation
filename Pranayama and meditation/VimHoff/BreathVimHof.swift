@@ -357,6 +357,6 @@ struct BreathVimHof: View {
     }
 }
 
-#Preview {
-    Carusel()
-}
+//#Preview {
+//    Carusel()
+//}

@@ -17,7 +17,7 @@ struct IndicatorButtonView: View {
                     ZStack {
                         Circle()
                             .stroke(style: .init(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
-                            .frame(width: 60, height: 60)
+                            .frame(width: 50, height: 50)
                         Text("\(value)")
                             .foregroundColor(.cyan)
                             .font(.system(size: 30))
