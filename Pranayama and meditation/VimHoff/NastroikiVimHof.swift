@@ -12,9 +12,9 @@ struct NastroikiVimHof: View {
     @State var dlinaVdohaVidoha = Array(2...5)
     @State var zaderjka = Array(0...180)
     
-    @State private var isShowing: Bool = true
+    @Binding var isShowing: Bool
     
-    @AppStorage("indexVimHof") var indexBasics  = [29, 3, 29, 29]
+    @AppStorage("indexVimHof") var indexBasics  = [14, 2, 29, 29]
     @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,4,30,30]
     
     var body: some View {
@@ -26,7 +26,7 @@ struct NastroikiVimHof: View {
             Button {
                 withAnimation {
                     isShowing.toggle()
-                    selectedValuesVimHof.append(3)
+                    
                 }
             } label: {
                 Text("Сохранить")
@@ -43,6 +43,6 @@ struct NastroikiVimHof: View {
     }
 }
 
-#Preview {
-    NastroikiVimHof()
-}
+//#Preview {
+//    NastroikiVimHof()
+//}

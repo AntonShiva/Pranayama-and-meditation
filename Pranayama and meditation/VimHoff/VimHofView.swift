@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VimHofView: View {
         //Данные настроек дыхания
-        @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,5,30,30]
+    @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,4,30,30]
         
         // флаг для появления настроек дыхания вима хофа
         @AppStorage("isShowingVimHof") var isShowingVimHof = false
@@ -91,7 +91,7 @@ struct VimHofView: View {
             }
             .padding(.top, 5.0)
             .sheet(isPresented: $isShowingVimHof ) {
-                NastroikiVimHof()
+                NastroikiVimHof(isShowing: $isShowingVimHof)
             }
             .fullScreenCover(isPresented: $isShowingBreathVimHof) {
                 BreathVimHof(isShowingBreathVimHof: $isShowingBreathVimHof)

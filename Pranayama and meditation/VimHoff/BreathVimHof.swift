@@ -11,7 +11,7 @@ import SwiftUI
 
 struct BreathVimHof: View {
     //Данные настроек дыхания
-    @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,5,30,30]
+    @AppStorage("selectedValuesVimHof") var selectedValuesVimHof: [Int] = [30,4,30,30]
     
     // Задержки на вдохе и выдохе
     @State private var exhaleDelay: Double = 0
