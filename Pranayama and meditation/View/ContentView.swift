@@ -15,8 +15,8 @@ struct ContentView: View {
             backgroundColor
                 .ignoresSafeArea()
             VStack() {
-     HomeVeiw()
-                   
+     
+               HomeView()
             }
             
         }

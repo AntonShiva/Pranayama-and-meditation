@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct SvoiRitm: View {
     
@@ -19,11 +20,10 @@ struct SvoiRitm: View {
     
     
     var body: some View {
-        
+   
         VStack{
-            
-            VStack(alignment: .center) {
-                Image(decorative: "0")
+           VStack(alignment: .center) {
+                Image(decorative: "1")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                 
@@ -31,80 +31,97 @@ struct SvoiRitm: View {
                 
                 
             }
-            .padding(.top, 30.0)
+            
+            .padding(.top, 20.0)
             .padding(.bottom, 20)
-            .padding(.horizontal, 50.0)
-            .sheet(isPresented: $isShowing) {
-                VStack {
-                    Text("Настройте свой ритм")
-                        .padding(.top, 40.0)
-                        .foregroundStyle(.cyan)
-                        .font(.system(size: 25))
+            .padding(.horizontal, 40.0)
+            .frame(maxWidth: .infinity, alignment: .top)
+            
+  
+            
+            Spacer()
+            
+            VStack {
+                Text("Настроить свой ритм")
+                    .foregroundStyle(.cyan)
+                .font(.system(size: 25))
+            }
+            
+            Spacer()
+            
+            VStack {
+                TabloPusk(isShowing: $isShowing, selectedValues: $selectedValues)
+                    .padding(.top, 15.0)
+            }
+            
+            
+            Spacer()
+            
+            
+            VStack {
+                Spacer()
+                HStack(alignment: .bottom){
+                    Spacer()
+                    Button {
+                        withAnimation {
+                            isShowing = true
+                        }
+                    } label: {
+                        Text("Настроить")
+                            .foregroundStyle(.cyan)
+                            .font(.system(size: 17))
+                    }
+                    .frame(width: 120.0, height: 40)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.cyan, lineWidth: 2)
+                    )
                     
-                    BreathingCycleSettingView(isShowing: $isShowing, selectedValues: $selectedValues)
-                        .padding(.top, 40.0)
+                    Spacer()
+                    
+                    Button {
+                        withAnimation {
+                            isShowingBreath = true
+                        }
+                    } label: {
+                        Text("Старт")
+                            .foregroundStyle(.cyan)
+                            .font(.system(size: 17))
+                    }
+                    .frame(width: 120.0, height: 40)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.cyan, lineWidth: 2)
+                    )
                     
                     Spacer()
                     
                 }
-                .padding(.top, 15.0)
-                .presentationDetents([.large])
+                .padding(.vertical, 15.0)
+            .padding(.bottom, 15)
+               
             }
-            
-            Text("Настроить свой ритм")
-                .foregroundStyle(.cyan)
-                .font(.system(size: 25))
-            
-            Spacer()
-            
-            TabloPusk(isShowing: $isShowing, selectedValues: $selectedValues)
-                .padding(.top, 10.0)
-            
-            
-            Spacer()
-            
-            
-            HStack{
-                Spacer()
-                Button {
-                    withAnimation {
-                        isShowing = true
-                    }
-                } label: {
-                    Text("Настроить")
-                        .foregroundStyle(.cyan)
-                        .font(.system(size: 17))
-                }
-                .frame(width: 120.0, height: 40)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.cyan, lineWidth: 2)
-                )
-                
-                Spacer()
-                
-                Button {
-                    withAnimation {
-                        isShowingBreath = true
-                    }
-                } label: {
-                    Text("Старт")
-                        .foregroundStyle(.cyan)
-                        .font(.system(size: 17))
-                }
-                .frame(width: 120.0, height: 40)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.cyan, lineWidth: 2)
-                )
-                
-                Spacer()
-                
-            }
-            .padding(.vertical, 15.0)
+            .frame(maxWidth: .infinity, alignment: .bottom)
             
         }
         .padding(.top, 20.0)
+       
+        .sheet(isPresented: $isShowing) {
+                   VStack {
+                       Text("Настройте свой ритм")
+                           .padding(.top, 40.0)
+                           .foregroundStyle(.cyan)
+                           .font(.system(size: 25))
+                       
+                       BreathingCycleSettingView(isShowing: $isShowing, selectedValues: $selectedValues)
+                           .padding(.top, 40.0)
+                       
+                       Spacer()
+                       
+                   }
+                   .padding(.top, 15.0)
+                   .presentationDetents([.large])
+               }
         .fullScreenCover(isPresented: $isShowingBreath) {
             
             BreathAnimation(isShowingBreath: $isShowingBreath)
@@ -115,5 +132,5 @@ struct SvoiRitm: View {
 }
 
 #Preview {
-    SvoiRitm()
+   HomeView()
 }

@@ -9,74 +9,89 @@ import SwiftUI
 import AVFoundation
 
 class MetronomePlayer {
-    private var audioPlayer: AVAudioPlayer?
-   
-    
     private var audioEngine = AVAudioEngine()
-      private var inhalePlayer = AVAudioPlayerNode()
-      private var tickPlayer = AVAudioPlayerNode()
-      
+    private var inhalePlayer = AVAudioPlayerNode()
+    private var tickPlayer = AVAudioPlayerNode()
+    
+    init() {
+          do {
+              try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+              try AVAudioSession.sharedInstance().setActive(true)
+          } catch {
+              print("Failed to activate audio session: \(error)")
+          }
+      }
     
     func stopSound() {
-            audioPlayer?.stop()
         audioEngine.stop()
         inhalePlayer.stop()
         tickPlayer.stop()
-        }
+    }
     
     func playInhaleAndTickSounds(sound: String) {
-         guard let inhaleSoundURL = Bundle.main.url(forResource: sound, withExtension: "mp3"),
-               let tickSoundURL = Bundle.main.url(forResource: "tick_metronome_high", withExtension: "mp3") else {
-             print("Ошибка: Файлы звуков не найдены")
-             return
-         }
-         
-         do {
-             let inhaleAudioFile = try AVAudioFile(forReading: inhaleSoundURL)
-             let tickAudioFile = try AVAudioFile(forReading: tickSoundURL)
-             
-             // Останавливаем все предыдущие звуки
-             stopSound()
-             
-             // Подключаем узлы к аудио движку
-             audioEngine.attach(inhalePlayer)
-             audioEngine.attach(tickPlayer)
-             
-             // Подключаем узлы к движку
-             audioEngine.connect(inhalePlayer, to: audioEngine.mainMixerNode, format: inhaleAudioFile.processingFormat)
-             audioEngine.connect(tickPlayer, to: audioEngine.mainMixerNode, format: tickAudioFile.processingFormat)
-             
-             // Загружаем аудиофайлы в плееры
-             inhalePlayer.scheduleFile(inhaleAudioFile, at: nil)
-             tickPlayer.scheduleFile(tickAudioFile, at: nil)
-             
-             // Стартуем движок
-             try audioEngine.start()
-           
-                 self.inhalePlayer.play()
-             
-           
-                 
-                 // Воспроизводим оба звука одновременно
-                 self.tickPlayer.play()
+        DispatchQueue.global().async { 
+            guard let inhaleSoundURL = Bundle.main.url(forResource: sound, withExtension: "mp3"),
+                  let tickSoundURL = Bundle.main.url(forResource: "tick_metronome_high", withExtension: "mp3") else {
+                print("Ошибка: Файлы звуков не найдены")
+                return
+            }
             
-           
-         } catch {
-             print("Ошибка проигрывания звуков: \(error.localizedDescription)")
-         }
-     }
-
+            do {
+                let inhaleAudioFile = try AVAudioFile(forReading: inhaleSoundURL)
+                let tickAudioFile = try AVAudioFile(forReading: tickSoundURL)
+                
+                // Останавливаем все предыдущие звуки
+                self.stopSound()
+                
+                // Подключаем узлы к аудио движку
+                let audioEngineSession = AVAudioSession.sharedInstance()
+                try audioEngineSession.setCategory(.playback)
+                self.audioEngine.attach(self.inhalePlayer)
+                self.audioEngine.attach(self.tickPlayer)
+                
+                // Подключаем узлы к движку
+                let inhaleAudioFormat = inhaleAudioFile.processingFormat
+                let tickAudioFormat = tickAudioFile.processingFormat
+                
+                self.audioEngine.connect(self.inhalePlayer, to: self.audioEngine.mainMixerNode, format: inhaleAudioFormat)
+                self.audioEngine.connect(self.tickPlayer, to: self.audioEngine.mainMixerNode, format: tickAudioFormat)
+                
+                // Загружаем аудиофайлы в плееры
+                self.inhalePlayer.scheduleFile(inhaleAudioFile, at: nil)
+                self.tickPlayer.scheduleFile(tickAudioFile, at: nil)
+                
+                // Стартуем движок
+                try audioEngineSession.setActive(true)
+                self.audioEngine.prepare()
+                try self.audioEngine.start()
+                self.inhalePlayer.play()
+                self.tickPlayer.play()
+            } catch {
+                print("Ошибка проигрывания звуков: \(error.localizedDescription)")
+            }
+        }
+    }
     func playSound(sound: String, type: String) {
         DispatchQueue.global().async {
             guard let soundURL = Bundle.main.url(forResource: sound, withExtension: type) else { return }
             do {
-                self.audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-                self.audioPlayer?.play()
+                let audioFile = try AVAudioFile(forReading: soundURL)
+                let audioFormat = audioFile.processingFormat
+                
+                // Создаем новый AVAudioPlayerNode для воспроизведения звука
+                let audioPlayer = AVAudioPlayerNode()
+                self.audioEngine.attach(audioPlayer)
+                self.audioEngine.connect(audioPlayer, to: self.audioEngine.mainMixerNode, format: audioFormat)
+                
+                // Планируем воспроизведение аудиофайла
+                audioPlayer.scheduleFile(audioFile, at: nil)
+                
+                // Запускаем аудиодвижок и воспроизводим звук
+                try self.audioEngine.start()
+                audioPlayer.play()
             } catch {
-                print("Ошибка проигрывания звука")
+                print("Ошибка проигрывания звука: \(error.localizedDescription)")
             }
-            
         }
     }
-    
 }

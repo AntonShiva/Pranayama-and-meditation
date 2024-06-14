@@ -32,6 +32,5 @@ struct TabloPusk: View {
                     }
                 }
             }
-            .padding()
         }}
 

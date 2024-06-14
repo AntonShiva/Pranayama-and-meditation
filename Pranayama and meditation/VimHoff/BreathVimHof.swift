@@ -6,8 +6,7 @@
 //
 
 import SwiftUI
-
-
+import AVFoundation
 
 struct BreathVimHof: View {
     //Данные настроек дыхания
