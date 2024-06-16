@@ -44,7 +44,8 @@ struct SvoiRitm: View {
             VStack {
                 Text("Настроить свой ритм")
                     .foregroundStyle(.cyan)
-                .font(.system(size: 25))
+                    .font(.system(size: 25))
+                
             }
             
             Spacer()

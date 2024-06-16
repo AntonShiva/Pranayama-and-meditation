@@ -91,205 +91,211 @@ struct BreathVimHof: View {
     
     @Binding var isShowingBreathVimHof: Bool
     var body: some View {
-        VStack{
-        ZStack {
-            ZStack {
-                // Петали "призраки" при выдохе
-                Petals(size: ghostSize, inhaling: inhaling)
-                    .blur(radius: ghostBlur)
-                    .opacity(ghostOpacity)
-                
-                // Маска для петалей, чтобы избежать 'прыжка' цвета при выдохе
-                Petals(size: size, inhaling: inhaling, isMask: true)
-                
-                // Перекрывающиеся петали
-                Petals(size: size, inhaling: inhaling)
-                Petals(size: size, inhaling: inhaling)
-                    .rotationEffect(.degrees(Double(GlobalBreathSettings.smallAngle)))
-                    .opacity(inhaling ? 0.8 : 0.6)
-                
-            }
-            
-            .rotationEffect(.degrees(Double(inhaling ? GlobalBreathSettings.bigAngle : -GlobalBreathSettings.smallAngle)))
-            .drawingGroup()
-            .frame(width: 300, height: 300, alignment: .center)
-            
-            // Отображение таймера в цветке
-            BreathAnimationView(timeRemaining: $timeRemaining)
-                .opacity( isTimerRunning ? 1 : 0)
-            
-        }
-        
-        .onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                if alertShow == false {
-                    shouldRunAnimation = true
-                    performAnimations()
+        ZStack{
+            Color(hex: 0xBDFFFD)
+                .ignoresSafeArea()
+            VStack{
+                ZStack {
                     
+                    ZStack {
+                        // Петали "призраки" при выдохе
+                        Petals(size: ghostSize, inhaling: inhaling)
+                            .blur(radius: ghostBlur)
+                            .opacity(ghostOpacity)
+                        
+                        // Маска для петалей, чтобы избежать 'прыжка' цвета при выдохе
+                        Petals(size: size, inhaling: inhaling, isMask: true)
+                        
+                        // Перекрывающиеся петали
+                        Petals(size: size, inhaling: inhaling)
+                        Petals(size: size, inhaling: inhaling)
+                            .rotationEffect(.degrees(Double(GlobalBreathSettings.smallAngle)))
+                            .opacity(inhaling ? 0.8 : 0.6)
+                        
+                    }
                     
-                    isTimerRunning = true
-                    // Проигрываем звуковой эффект на каждый счет
-                    metronomePlayer.playSound(sound: "breathing-\(selectedValuesVimHof[1])sec", type: "mp3")
-                    timer = Timer.publish(every: dlinaVdohf, on: .main, in: .common).autoconnect()
+                    .rotationEffect(.degrees(Double(inhaling ? GlobalBreathSettings.bigAngle : -GlobalBreathSettings.smallAngle)))
+                    .drawingGroup()
+                    .frame(width: 300, height: 300, alignment: .center)
                     
-                }
-            }
-            
-        })
-        .onAppear(perform: {
-            if selectedValuesVimHof[2] > 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + pauza) {
-                    timeExhaleDelayTimerStart = true
-                }
-            }
-            if selectedValuesVimHof[3] > 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + pauza + Double(selectedValuesVimHof[2])) {
-                    timeInhaleDelayTimerStart = true
-                }
-            }
-        })
-            
-        // отображение таймера с логикой
-        .overlay(content: {
-            ZStack{
-                Circle()
-                    .stroke(style: .init(lineWidth: 5, lineCap: .round, lineJoin: .round))
-                    .frame(width: 70, height: 70)
-                    .foregroundColor(.white)
-                if isTimerRunning {
+                    // Отображение таймера в цветке
                     BreathAnimationView(timeRemaining: $timeRemaining)
-                        .opacity(0)
+                        .opacity( isTimerRunning ? 1 : 0)
                     
-                        .onReceive(timer) { _ in
-                            if timeRemaining < numberOfBreathsExhaled {
-                                // Проигрываем звуковой эффект на каждый счет
-                                metronomePlayer.playSound(sound: "breathing-\(selectedValuesVimHof[1])sec", type: "mp3")
-                            }
-                            timeRemaining += 1
+                }
+                
+                .onAppear(perform: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        if alertShow == false {
+                            shouldRunAnimation = true
+                            performAnimations()
                             
-                            if timeRemaining == numberOfBreathsExhaled {
-                                
-                                metronomePlayer.stopSound()
-                                stopAnimations()
-                            }
                             
-                            if timeRemaining == numberOfBreathsExhaled {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                                    isTimerRunning = false
-                                    timeRemaining = 1
-                                }
-                            }
-                        }
-                    
-                } else {
-                    // Табло старт обратный отсчет
-                    ZStack{
-                        Image(systemName: "atom")
-                            .font(.system(size: 36))
-                            .foregroundColor(.white)
-                        
-                        // Запуск таймера задержка на выдохе
-                        if timeExhaleDelayTimerStart {
-                            Text("\(timeExhaleDelayTimer)")
-                                .onReceive(exhaleDelayTimer) { _ in
-                                    if timeExhaleDelayTimer < selectedValuesVimHof[2] {
-                                        timeExhaleDelayTimer += 1
-                                    } else {
-                                        self.exhaleDelayTimer.upstream.connect().cancel()
-                                        timeExhaleDelayTimer = 1
-                                        
-                                        timeExhaleDelayTimerStart = false
-                                    }
-                                }
-                                .fontWeight(.heavy)
-                                .font(.system(size: 36))
-                                .foregroundColor(Color(hex: 0x05C3F0))
-                        }
-                        
-                        // Запуск таймера задержка на вдохе
-                        if timeInhaleDelayTimerStart {
-                            Text("\(timeInhaleDelayTimer)")
-                                .onReceive(inhaleDelayTimer) { _ in
-                                    if timeInhaleDelayTimer < selectedValuesVimHof[3] {
-                                        timeInhaleDelayTimer += 1
-                                    } else {
-                                        self.inhaleDelayTimer.upstream.connect().cancel()
-                                        timeInhaleDelayTimer = 1
-                                        timeInhaleDelayTimerStart = false
-                                    }
-                                }
-                                .fontWeight(.heavy)
-                                .font(.system(size: 36))
-                                .foregroundColor(Color(hex: 0x05C3F0))
-                        }
-                        
-                        
-                        
-                        
-                        // Табло старт
-                        if start{
-                            Text("\(startTimerCount)")
-                                .onReceive(startTimer) { _ in
-                                    if startTimerCount != 0 {
-                                        countTimer += 1
-                                        startTimerCount = 4 - Int(countTimer)
-                                        
-                                        if startTimerCount >= 1 {
-                                            metronomePlayer.playSound(sound: "tick_metronome_low", type: "mp3")
-                                        }
-                                        if startTimerCount == 0 {
-                                            metronomePlayer.stopSound()
-                                            start = false
-                                            self.startTimer.upstream.connect().cancel()
-                                            countTimer = 0
-                                            startTimerCount = 0
-                                            //                                showStart = false
-                                        }
-                                    }
-                                    
-                                }
-                                .fontWeight(.heavy)
-                                .font(.system(size: 36))
-                                .foregroundColor(Color(hex: 0x05C3F0))
+                            isTimerRunning = true
+                            // Проигрываем звуковой эффект на каждый счет
+                            metronomePlayer.playSound(sound: "breathing-\(selectedValuesVimHof[1])sec", type: "mp3")
+                            timer = Timer.publish(every: dlinaVdohf, on: .main, in: .common).autoconnect()
+                            
                         }
                     }
-                }
+                    
+                })
+                .onAppear(perform: {
+                    if selectedValuesVimHof[2] > 0 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + pauza) {
+                            timeExhaleDelayTimerStart = true
+                        }
+                    }
+                    if selectedValuesVimHof[3] > 0 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + pauza + Double(selectedValuesVimHof[2])) {
+                            timeInhaleDelayTimerStart = true
+                        }
+                    }
+                })
                 
-                if alertShow {
-                    AlertViewVimHof(startTimerCount: $startTimerCount, refreshView: $refreshView, alertShow: $alertShow, start: $start, isShowingBreathVimHof: $isShowingBreathVimHof )
-                }
+                // отображение таймера с логикой
+                .overlay(content: {
+                    ZStack{
+                        Circle()
+                            .stroke(style: .init(lineWidth: 5, lineCap: .round, lineJoin: .round))
+                            .frame(width: 70, height: 70)
+                            .foregroundColor(.white)
+                        if isTimerRunning {
+                            BreathAnimationView(timeRemaining: $timeRemaining)
+                                .opacity(0)
+                            
+                                .onReceive(timer) { _ in
+                                    if timeRemaining < numberOfBreathsExhaled {
+                                        // Проигрываем звуковой эффект на каждый счет
+                                        metronomePlayer.playSound(sound: "breathing-\(selectedValuesVimHof[1])sec", type: "mp3")
+                                    }
+                                    timeRemaining += 1
+                                    
+                                    if timeRemaining == numberOfBreathsExhaled {
+                                        
+                                        metronomePlayer.stopSound()
+                                        stopAnimations()
+                                    }
+                                    
+                                    if timeRemaining == numberOfBreathsExhaled {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                            isTimerRunning = false
+                                            timeRemaining = 1
+                                        }
+                                    }
+                                }
+                            
+                        } else {
+                            // Табло старт обратный отсчет
+                            ZStack{
+                                Image(systemName: "atom")
+                                    .font(.system(size: 36))
+                                    .foregroundColor(.white)
+                                
+                                // Запуск таймера задержка на выдохе
+                                if timeExhaleDelayTimerStart {
+                                    Text("\(timeExhaleDelayTimer)")
+                                        .onReceive(exhaleDelayTimer) { _ in
+                                            if timeExhaleDelayTimer < selectedValuesVimHof[2] {
+                                                timeExhaleDelayTimer += 1
+                                            } else {
+                                                self.exhaleDelayTimer.upstream.connect().cancel()
+                                                timeExhaleDelayTimer = 1
+                                                
+                                                timeExhaleDelayTimerStart = false
+                                            }
+                                        }
+                                        .fontWeight(.heavy)
+                                        .font(.system(size: 36))
+                                        .foregroundColor(Color(hex: 0x05C3F0))
+                                }
+                                
+                                // Запуск таймера задержка на вдохе
+                                if timeInhaleDelayTimerStart {
+                                    Text("\(timeInhaleDelayTimer)")
+                                        .onReceive(inhaleDelayTimer) { _ in
+                                            if timeInhaleDelayTimer < selectedValuesVimHof[3] {
+                                                timeInhaleDelayTimer += 1
+                                            } else {
+                                                self.inhaleDelayTimer.upstream.connect().cancel()
+                                                timeInhaleDelayTimer = 1
+                                                timeInhaleDelayTimerStart = false
+                                            }
+                                        }
+                                        .fontWeight(.heavy)
+                                        .font(.system(size: 36))
+                                        .foregroundColor(Color(hex: 0x05C3F0))
+                                }
+                                
+                                
+                                
+                                
+                                // Табло старт
+                                if start{
+                                    Text("\(startTimerCount)")
+                                        .onReceive(startTimer) { _ in
+                                            if startTimerCount != 0 {
+                                                countTimer += 1
+                                                startTimerCount = 4 - Int(countTimer)
+                                                
+                                                if startTimerCount >= 1 {
+                                                    metronomePlayer.playSound(sound: "tick_metronome_low", type: "mp3")
+                                                }
+                                                if startTimerCount == 0 {
+                                                    metronomePlayer.stopSound()
+                                                    start = false
+                                                    self.startTimer.upstream.connect().cancel()
+                                                    countTimer = 0
+                                                    startTimerCount = 0
+                                                    //                                showStart = false
+                                                }
+                                            }
+                                            
+                                        }
+                                        .fontWeight(.heavy)
+                                        .font(.system(size: 36))
+                                        .foregroundColor(Color(hex: 0x05C3F0))
+                                }
+                            }
+                        }
+                        
+                        if alertShow {
+                            AlertViewVimHof(startTimerCount: $startTimerCount, refreshView: $refreshView, alertShow: $alertShow, start: $start, isShowingBreathVimHof: $isShowingBreathVimHof )
+                        }
+                    }
+                    
+                })
+                Button(action: {
+                    stopAnimations()
+                    isTimerRunning = false
+                    
+                    timeRemaining = 1
+                    
+                    
+                    self.timer.upstream.connect().cancel()
+                    metronomePlayer.stopSound()
+                    alertShow = true
+                    
+                    start = false
+                    self.startTimer.upstream.connect().cancel()
+                    countTimer = 0
+                    startTimerCount = 0
+                    
+                }, label: {
+                    Text("Пауза")
+                        .font(.system(size: 25))
+                        .foregroundColor(.white.opacity(0.75))
+                        .padding(.vertical, 6)
+                        .frame(maxWidth: .infinity)
+                        .background {
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .fill(Color.cyan.gradient)
+                        }
+                })
+                .padding(.top, 40)
+                .padding(.trailing, 5.0)
+                .frame(width: 130)
             }
-            
-        })
-        Button(action: {
-            stopAnimations()
-            isTimerRunning = false
-            
-            timeRemaining = 1
-            
-            
-            self.timer.upstream.connect().cancel()
-            metronomePlayer.stopSound()
-            alertShow = true
-            
-            start = false
-            self.startTimer.upstream.connect().cancel()
-            countTimer = 0
-            startTimerCount = 0
-            
-        }, label: {
-            Text("Пауза")
-                .font(.system(size: 25))
-                .foregroundColor(.white.opacity(0.75))
-                .padding(.vertical, 6)
-                .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .fill(Color.cyan.gradient)
-                }
-        })
-        .padding(.trailing, 5.0)
-        .frame(width: 130)
     }
         .onAppear(perform: {
             numberOfBreathsExhaled = selectedValuesVimHof[0]

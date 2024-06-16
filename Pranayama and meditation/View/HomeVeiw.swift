@@ -67,7 +67,7 @@ struct HomeView: View {
 #Preview {
     HomeView()
 }
-
+/** Modifikator specefekta */
 struct Twirl: Transition {
     func body(content: Content, phase: TransitionPhase) -> some View {
         content
@@ -80,7 +80,8 @@ struct Twirl: Transition {
 //                        phase == .didDisappear ? -5 : .zero
 //                )
 //            )
-            .rotation3DEffect(.degrees(phase == .willAppear ? 140 : phase == .didDisappear ? -140 : .zero ), axis: (x: 0, y: 1, z: 0))
+            .rotation3DEffect(.degrees(phase == .willAppear ? 120 : phase == .didDisappear ? -120 : .zero ), axis: (x: 1, y: 1, z: 0))
+        
             .brightness(phase == .willAppear ? 1 : 0)
     }
 }
