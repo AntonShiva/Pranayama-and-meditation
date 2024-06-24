@@ -80,7 +80,7 @@ struct Twirl: Transition {
 //                        phase == .didDisappear ? -5 : .zero
 //                )
 //            )
-            .rotation3DEffect(.degrees(phase == .willAppear ? 120 : phase == .didDisappear ? -120 : .zero ), axis: (x: 1, y: 1, z: 0))
+//            .rotation3DEffect(.degrees(phase == .willAppear ? 120 : phase == .didDisappear ? -120 : .zero ), axis: (x: 1, y: 1, z: 0))
         
             .brightness(phase == .willAppear ? 1 : 0)
     }

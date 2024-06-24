@@ -77,6 +77,8 @@ struct BreathAnimation: View {
     //Минтуты
     @State private var elapsedMinutes: Int = 0
     
+   
+    
     
    var body: some View {
         ZStack{
@@ -137,27 +139,7 @@ struct BreathAnimation: View {
                     exhaleTime = Double(selectedValues[2])
                     pauseTimeVidoh = Double(selectedValues[3])
                 })
-               // запуск анимации с задержкой в 4 сек
-                .onAppear(perform: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                        if !alertShow {
-                            showBreatheView = true
-                            timerLabel = "Вдох"
-                            // Проигрываем звуковой эффект на каждый счет
-                            metronomePlayer.playInhaleAndTickSounds(sound: "inhale")
-                            
-                            if showBreatheView{
-                                performAnimations()
-                            }
-                            
-                            isTimerRunning = true
-                            if selectedValues.contains(where: { $0 > 0 }) {
-                                isTimerRunning = true
-                                timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                            }
-                        }
-                    }
-                })
+            
                 // отображение таймера с логикой
                 .overlay(content: {
                    ZStack{
@@ -192,10 +174,29 @@ struct BreathAnimation: View {
                                             }
                                             if startTimerCount == 0 {
                                                 metronomePlayer.stopSound()
-                                                start = false
+                                               
                                                 self.startTimer.upstream.connect().cancel()
                                                 countTimer = 0
                                                 startTimerCount = 0
+                                                start = false
+                                              
+                                                // запуск анимации
+                                                if !alertShow {
+                                                    showBreatheView = true
+                                                    timerLabel = "Вдох"
+                                                    // Проигрываем звуковой эффект на каждый счет
+                                                    metronomePlayer.playInhaleAndTickSounds(sound: "inhale")
+                                                    
+                                                    if showBreatheView{
+                                                        performAnimations()
+                                                    }
+                                                    
+                                                    isTimerRunning = true
+                                                    if selectedValues.contains(where: { $0 > 0 }) {
+                                                        isTimerRunning = true
+                                                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                                                    }
+                                                }
                                                 //                                showStart = false
                                             }
                                         }

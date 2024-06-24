@@ -124,22 +124,7 @@ struct BreathVimHof: View {
                     
                 }
                 
-                .onAppear(perform: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                        if alertShow == false {
-                            shouldRunAnimation = true
-                            performAnimations()
-                            
-                            
-                            isTimerRunning = true
-                            // Проигрываем звуковой эффект на каждый счет
-                            metronomePlayer.playSound(sound: "breathing-\(selectedValuesVimHof[1])sec", type: "mp3")
-                            timer = Timer.publish(every: dlinaVdohf, on: .main, in: .common).autoconnect()
-                            
-                        }
-                    }
-                    
-                })
+
                 .onAppear(perform: {
                     if selectedValuesVimHof[2] > 0 {
                         DispatchQueue.main.asyncAfter(deadline: .now() + pauza) {
@@ -247,6 +232,18 @@ struct BreathVimHof: View {
                                                     self.startTimer.upstream.connect().cancel()
                                                     countTimer = 0
                                                     startTimerCount = 0
+                                                    
+                                                    if alertShow == false {
+                                                        shouldRunAnimation = true
+                                                        performAnimations()
+                                                        
+                                                        
+                                                        isTimerRunning = true
+                                                        // Проигрываем звуковой эффект на каждый счет
+                                                        metronomePlayer.playSound(sound: "breathing-\(selectedValuesVimHof[1])sec", type: "mp3")
+                                                        timer = Timer.publish(every: dlinaVdohf, on: .main, in: .common).autoconnect()
+                                                        
+                                                    }
                                                     //                                showStart = false
                                                 }
                                             }
@@ -362,6 +359,6 @@ struct BreathVimHof: View {
     }
 }
 
-//#Preview {
-//    Carusel()
-//}
+#Preview {
+    VimHofView()
+}
